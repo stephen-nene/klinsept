@@ -1,20 +1,10 @@
-import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { animateScroll } from "react-scroll";
-import FooterNewsletter from "../../components/footer/FooterNewsletter";
+import FooterNewsletter from "../components/footer/FooterNewsletter";
+import { FaLinkedinIn, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
-const FooterOne = ({
-  backgroundColorClass,
-  spaceTopClass,
-  spaceBottomClass,
-  spaceLeftClass,
-  spaceRightClass,
-  containerClass,
-  extraFooterClass,
-  sideMenu,
-  footerLogo,
-}) => {
+const FooterOne = () => {
   const [scroll, setScroll] = useState(0);
   const [top, setTop] = useState(0);
 
@@ -35,27 +25,21 @@ const FooterOne = ({
   };
 
   return (
-    <footer
-      className={`footer-area ${backgroundColorClass || ""} ${
-        spaceTopClass || ""
-      } ${spaceBottomClass || ""} ${extraFooterClass || ""} ${
-        spaceLeftClass || ""
-      } ${spaceRightClass || ""}`}
-    >
-      <div className={`${containerClass || "container"}`}>
+    <footer className={`footer-area bg-gray pt-100 pb-5`}>
+      <div className={`container`}>
         <div className="row">
           <div
-            className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
-            }`}
+            className="
+            col-lg-2 col-sm-4
+            "
           >
             {/* footer copyright */}
             <div className={`copyright mb-30`}>
               <div className="footer-logo d-flex justify-content-center">
-                <Link to={process.env.PUBLIC_URL + "/"}>
+                <Link to={"/"}>
                   <img
                     alt="Company Logo"
-                    src={process.env.PUBLIC_URL + "/assets/img/logo/logo.png"}
+                    src={"/assets/img/logo/logo.png"}
                     className="img-fluid"
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
@@ -76,9 +60,7 @@ const FooterOne = ({
             </div>
           </div>
           <div
-            className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
-            }`}
+            className={`col-lg-2 col-sm-4`}
           >
             <div className="footer-widget mb-30 ml-30">
               <div className="footer-title">
@@ -87,73 +69,53 @@ const FooterOne = ({
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/about"}>About us</Link>
+                    <Link to={"/about"}>About us</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Store location
-                    </Link>
+                    <Link to={"/contact"}>Store location</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/contact"}>
-                      Contact
-                    </Link>
+                    <Link to={"/contact"}>Contact</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Orders tracking
-                    </Link>
+                    <Link to={"#/"}>Orders tracking</Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div
-            className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
-            }`}
+            className={`col-lg-2 col-sm-4`}
           >
             <div
-              className={`${
-                sideMenu
-                  ? "footer-widget mb-30 ml-95"
-                  : "footer-widget mb-30 ml-50"
-              }`}
+              className={`footer-widget mb-30 ml-50`}
             >
               <div className="footer-title">
-                <h3>USEFUL LINKS</h3>
+                <h3>CATEGORIES</h3>
               </div>
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Returns</Link>
+                    <Link to={"/products"}>Antiseptics</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Support Policy
-                    </Link>
+                    <Link to={"/products"}>Detergents</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>
+                    <Link to={"/products"}>Disinfectants</Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>FAQs</Link>
+                    <Link to={"/products"}>Handwash</Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-6"
-            }`}
+            className={`col-lg-2 col-sm-6`}
           >
             <div
-              className={`${
-                sideMenu
-                  ? "footer-widget mb-30 ml-145"
-                  : "footer-widget mb-30 ml-75"
-              }`}
+              className={`footer-widget mb-30 ml-75`}
             >
               <div className="footer-title">
                 <h3>FOLLOW US</h3>
@@ -166,7 +128,7 @@ const FooterOne = ({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Facebook
+                      <FaFacebookF size={20}/>
                     </a>
                   </li>
                   <li>
@@ -175,7 +137,7 @@ const FooterOne = ({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Twitter
+                      <FaTwitter size={20}/>
                     </a>
                   </li>
                   <li>
@@ -184,16 +146,16 @@ const FooterOne = ({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Instagram
+                      <FaInstagram size={20}/>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="//www.youtube.com"
+                      href="//www.linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Youtube
+                      <FaLinkedinIn size={20}/>
                     </a>
                   </li>
                 </ul>
@@ -201,14 +163,10 @@ const FooterOne = ({
             </div>
           </div>
           <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
-            }`}
+            className={`col-lg-4 col-sm-6`}
           >
             {/* footer newsletter */}
-            <FooterNewsletter
-              sideMenu={sideMenu}
-            />
+            <FooterNewsletter />
           </div>
         </div>
       </div>
@@ -222,16 +180,5 @@ const FooterOne = ({
   );
 };
 
-FooterOne.propTypes = {
-  backgroundColorClass: PropTypes.string,
-  containerClass: PropTypes.string,
-  extraFooterClass: PropTypes.string,
-  sideMenu: PropTypes.bool,
-  spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string,
-  spaceLeftClass: PropTypes.string,
-  spaceRightClass: PropTypes.string,
-  footerLogo: PropTypes.string, // Added footerLogo prop
-};
 
 export default FooterOne;

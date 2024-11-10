@@ -2,7 +2,6 @@
 .single-banner {
     position: relative;
     overflow: hidden;
-    /* height: 100%; Ensure consistent height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,7 +13,7 @@
   }
   
   .banner-card {
-    max-height: 450px; /* Limit the height for consistent card size */
+    max-height: 450px; 
     overflow: hidden; 
     display: flex;
     flex-direction: column;
@@ -25,17 +24,14 @@
     bottom: 10%;
     left: 10%;
     right: 10%;
-    color: white;
-    /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
-    padding: 10px;
+    color: rgb(0, 0, 0);
     text-align: center;
+    padding: 10px;
   }
-  
-  .banner-content-33-2 h2 {
-    margin: 10px 0;
-    font-size: 1.5rem;
+
+  .banner-content-33-2 a {
+    background-color: rgba(0, 0, 0, 0.5); 
   }
-  
   .banner-content-33-2 h4 {
     margin: 5px 0;
     font-size: 1.2rem;

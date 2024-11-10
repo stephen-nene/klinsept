@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
-import testimonialData from "../../data/testimonial/testimonial-three.json";
+import testimonialData from "../data/testimonial/testimonial-three.json";
 
-const TestimonialThree = () => {
+const Testimonials = () => {
   // Swiper slider settings
   const settings = {
     slidesPerView: 1,
@@ -41,7 +41,7 @@ const TestimonialThree = () => {
             </div>
           </div>
           <div className="col-lg-6 col-md-5">
-            <div className="testimonial-img-2">
+            <div className="testimonial-img-1">
               <Swiper {...settings}>
                 {testimonialData &&
                   testimonialData.map((single, key) => (
@@ -62,8 +62,8 @@ const TestimonialThree = () => {
 };
 
 // Prop validation
-TestimonialThree.propTypes = {
+Testimonials.propTypes = {
   testimonialData: PropTypes.array,
 };
 
-export default TestimonialThree;
+export default Testimonials;

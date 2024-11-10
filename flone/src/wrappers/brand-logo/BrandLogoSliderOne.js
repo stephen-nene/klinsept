@@ -1,10 +1,11 @@
-import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
 import BrandLogoOneSingle from "../../components/brand-logo/BrandLogoOneSingle";
 import brandLogoData from "../../data/brand-logos/brand-logo-one.json";
+import SectionTitleTwo from "../../components/section-title/SectionTitleTwo";
 
-const BrandLogoSliderOne = ({ spaceBottomClass, spaceTopClass }) => {
+
+const BrandLogoSliderOne = () => {
   const settings = {
     loop: true,
     autoplay: {
@@ -30,10 +31,13 @@ const BrandLogoSliderOne = ({ spaceBottomClass, spaceTopClass }) => {
 
   return (
     <div
-      className={`brand-logo-area ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }  ${spaceTopClass ? spaceTopClass : ""}`}
+      className={`brand-logo-area pb-70  pt-70`}
     >
+              <SectionTitleTwo
+          titleText="Clients we work with"
+          positionClass="text-center"
+          spaceClass="mb-60"
+        />
       <div className="container">
         <div className="brand-logo-active">
           <Swiper {...settings}>
@@ -55,9 +59,6 @@ const BrandLogoSliderOne = ({ spaceBottomClass, spaceTopClass }) => {
   );
 };
 
-BrandLogoSliderOne.propTypes = {
-  spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string
-};
+
 
 export default BrandLogoSliderOne;

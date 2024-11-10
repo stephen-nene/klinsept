@@ -2,51 +2,27 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../components/section-title/SectionTitle";
-import '../../assets/css/banner.css'
+import '../../assets/css/gallery.css'
 
 const banners = [
   {
-    image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-4.jpg`,
-    title: "Covid - 19",
-    subtitle: "Medix Mask",
+    image: `/assets/img/banner/banner-4.jpg`,
+    subtitle: "",
     discount: "Up To 40% Off",
     link: "/shop-grid-standard",
   },
   {
-    image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-7.jpg`,
-    title: "",
+    image: `/assets/img/banner/banner-7.jpg`,
     subtitle: "Hand Gloves",
     discount: "Up To 30% Off",
     link: "/shop-grid-standard",
   },
   {
-    image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-3.jpg`,
-    title: "Covid - 19",
+    image: `/assets/img/banner/banner-3.jpg`,
     subtitle: "Hand Sanitizer",
     discount: "Up To 40% Off",
     link: "/shop-grid-standard",
   },
-  // {
-  //   image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-4.jpg`,
-  //   title: "Covid - 19",
-  //   subtitle: "Medix Mask",
-  //   discount: "Up To 40% Off",
-  //   link: "/shop-grid-standard",
-  // },
-  // {
-  //   image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-7.jpg`,
-  //   title: "",
-  //   subtitle: "Hand Gloves",
-  //   discount: "Up To 30% Off",
-  //   link: "/shop-grid-standard",
-  // },
-  // {
-  //   image: `${process.env.PUBLIC_URL}/assets/img/banner/banner-3.jpg`,
-  //   title: "Covid - 19",
-  //   subtitle: "Hand Sanitizer",
-  //   discount: "Up To 40% Off",
-  //   link: "/shop-grid-standard",
-  // },
 ];
 const Gallery = () => {
   // Define banner data as an array of objects
@@ -69,7 +45,7 @@ const Gallery = () => {
               key={index}
             >
               <div className="single-banner mb-30 banner-card">
-                <a href="product-details.html">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/klinsept">
                   <img src={banner.image} alt="" className="img-fluid" />
                 </a>
                 <div
@@ -77,11 +53,11 @@ const Gallery = () => {
                 >
                   {banner.title && <h4>{banner.title}</h4>}
                   <h2>
-                    {banner.subtitle} <br />
-                    {banner.discount}
+                    {/* {banner.subtitle} <br /> */}
+                    {/* {banner.discount} */}
                   </h2>
                   <Link to={process.env.PUBLIC_URL + banner.link}>
-                    Shop Now
+                    Learn more
                   </Link>
                 </div>
               </div>

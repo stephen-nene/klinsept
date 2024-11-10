@@ -1,23 +1,14 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import HeaderOne from "../wrappers/header/HeaderOne";
-import FooterOne from "../wrappers/footer/FooterOne";
+import FooterOne from "../wrappers/FooterOne";
 
-const LayoutOne = ({
-  children,
-  headerPositionClass
-}) => {
+const LayoutOne = ({ children, headerTop, headerPositionClass }) => {
   return (
     <Fragment>
-      <HeaderOne
-        headerPositionClass={headerPositionClass}
-      />
+      <HeaderOne top={headerTop} headerPositionClass={headerPositionClass} />
       {children}
-      <FooterOne
-        backgroundColorClass="bg-gray"
-        spaceTopClass="pt-100"
-        spaceBottomClass="pb-70"
-      />
+      <FooterOne />
     </Fragment>
   );
 };
@@ -25,7 +16,8 @@ const LayoutOne = ({
 LayoutOne.propTypes = {
   children: PropTypes.any,
   headerContainerClass: PropTypes.string,
-  headerPositionClass: PropTypes.string
+  headerPositionClass: PropTypes.string,
+  headerTop: PropTypes.string,
 };
 
 export default LayoutOne;

@@ -169,7 +169,7 @@
     "category": [
       "antiseptics"
     ],
-    "stock": 0,
+    "stock": 90,
     "image": [
       "/assets/img/product/fashion/8.jpg",
       "/assets/img/product/fashion/6.jpg",
@@ -192,7 +192,7 @@
     "category": [
       "antiseptics"
     ],
-    "stock": 5,
+    "stock": 105,
     "affiliateLink": "//www.amazon.com",
     "image": [
       "/assets/img/product/fashion/9.jpg",
@@ -216,7 +216,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 15,
+    "stock": 105,
     "image": [
       "/assets/img/product/fruits/1.jpg",
       "/assets/img/product/fruits/2.jpg",
@@ -239,7 +239,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 25,
+    "stock": 250,
     "image": [
       "/assets/img/product/fruits/2.jpg",
       "/assets/img/product/fruits/3.jpg",
@@ -262,7 +262,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 20,
+    "stock": 2100,
     "image": [
       "/assets/img/product/fruits/3.jpg",
       "/assets/img/product/fruits/4.jpg",
@@ -285,7 +285,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 40,
+    "stock": 400,
     "image": [
       "/assets/img/product/fruits/4.jpg",
       "/assets/img/product/fruits/5.jpg",
@@ -308,7 +308,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 45,
+    "stock": 450,
     "image": [
       "/assets/img/product/fruits/5.jpg",
       "/assets/img/product/fruits/6.jpg",
@@ -331,7 +331,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 5,
+    "stock": 50,
     "image": [
       "/assets/img/product/fruits/6.jpg",
       "/assets/img/product/fruits/7.jpg",
@@ -354,7 +354,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 7,
+    "stock": 70,
     "image": [
       "/assets/img/product/fruits/7.jpg",
       "/assets/img/product/fruits/8.jpg",
@@ -377,7 +377,7 @@
     "category": [
       "disinfectants"
     ],
-    "stock": 6,
+    "stock": 60,
     "image": [
       "/assets/img/product/fruits/8.jpg",
       "/assets/img/product/fruits/1.jpg",
@@ -492,7 +492,7 @@
     "category": [
       "handwash"
     ],
-    "stock": 8,
+    "stock": 80,
     "image": [
       "/assets/img/product/books/5.jpg",
       "/assets/img/product/books/6.jpg",
@@ -742,7 +742,7 @@
     "category": [
       "antiseptics"
     ],
-    "stock": 0,
+    "stock": 100,
     "image": [
       "/assets/img/product/fashion/30.jpg",
       "/assets/img/product/fashion/23.jpg",
@@ -788,7 +788,7 @@
     "category": [
       "detergents"
     ],
-    "stock": 10,
+    "stock": 40,
     "image": [
       "/assets/img/product/christmas/1.jpg",
       "/assets/img/product/christmas/2.jpg",
@@ -834,7 +834,7 @@
     "category": [
       "detergents"
     ],
-    "stock": 25,
+    "stock": 55,
     "image": [
       "/assets/img/product/christmas/3.jpg",
       "/assets/img/product/christmas/4.jpg",

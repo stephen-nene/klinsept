@@ -1,0 +1,66 @@
+.custom-testimonial-area {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.custom-container {
+  padding: 0 15px;
+}
+
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.custom-column-left,
+.custom-column-right {
+  flex: 1;
+}
+
+.custom-testimonial-slider {
+  margin-bottom: 30px;
+}
+
+.custom-single-testimonial {
+  text-align: center;
+}
+
+.custom-testimonial-content {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.custom-client-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.custom-map-icon {
+  font-size: 20px;
+  color: #ccc;
+  margin-right: 10px;
+}
+
+.custom-customer-name {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.custom-customer-title {
+  color: #777;
+}
+
+.custom-testimonial-images {
+  text-align: center;
+}
+
+.custom-testimonial-image {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 10px;
+  margin: 0 auto;
+}

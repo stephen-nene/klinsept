@@ -11,34 +11,34 @@
     "content": "As a small business owner, I rely on Klinsafi's multipurpose liquid detergent for all our cleaning needs. It's both effective and cost-efficient, which helps us maintain a clean environment without breaking the bank.",
     "customerName": "Emily Rogers",
     "title": "business owner",
-    "image": "/assets/img/testimonial/profile1.avif"
+    "image": "/assets/img/testimonial/profile.avif"
   },
   {
     "id": "3",
     "content": "I've been using Klinwash hand washing soap in my home for months now, and I couldn't be happier with the results. It's gentle on the skin and does an excellent job in keeping my family safe from germs.",
     "customerName": "Samuel Njiru",
     "title": "customer",
-    "image": "/assets/img/testimonial/profile2.avif"
+    "image": "/assets/img/testimonial/profile.avif"
   },
   {
     "id": "4",
     "content": "Our restaurant has switched to using Klindish dishwashing detergent, and we’ve seen a huge difference. It effectively cuts through grease, leaving our dishes sparkling clean, and we’re happy to support a local business.",
     "customerName": "Nina Wambui",
     "title": "restaurant owner",
-    "image": "/assets/img/testimonial/profile3.avif"
+    "image": "/assets/img/testimonial/profile.avif"
   },
   {
     "id": "5",
     "content": "We use Klinsan solution in our clinic for sanitization. It's powerful yet gentle, and we trust it to provide a safe environment for our patients. Highly recommend it to other healthcare providers.",
     "customerName": "Dr. Peter Mungai",
     "title": "healthcare provider",
-    "image": "/assets/img/testimonial/profile4.avif"
+    "image": "/assets/img/testimonial/profile.avif"
   },
   {
     "id": "6",
     "content": "As an event planner, hygiene is a priority. Klinsolutions products, especially their hand sanitizers and disinfectants, are a go-to for my events. They help maintain a clean and safe atmosphere for all our clients.",
     "customerName": "Sarah Kioko",
     "title": "event planner",
-    "image": "/assets/img/testimonial/profile6.avif"
+    "image": "/assets/img/testimonial/profile.avif"
   }
 ]
