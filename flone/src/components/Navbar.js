@@ -13,6 +13,7 @@ import { IoClose } from "react-icons/io5";
 import { Form, Button, Alert } from "react-bootstrap";
 import Logo from "../assets/logo.png";
 import "../assets/css/Navbar.css";
+import { useTranslation } from "react-i18next";
 
 function Navbar({ loggedin = !true }) {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -22,6 +23,9 @@ function Navbar({ loggedin = !true }) {
   const [error, setError] = useState("");
   const navigationRef = useRef();
   const navigate = useNavigate();
+  const { t } = useTranslation(); 
+
+
 
   const cartData = useSelector((state) => state.cartData);
   // const wishlistData = useSelector((state) => state.wishlistData);
@@ -80,7 +84,6 @@ function Navbar({ loggedin = !true }) {
       )}
       {/* Add the LanguageCurrencyChanger Component here */}
 
-
       <div
         className={`fixed-top ${isScrolled && "scrolled"} ${
           toggleMenu && "toggled"
@@ -96,11 +99,11 @@ function Navbar({ loggedin = !true }) {
                   </Link>
                 </div>
                 <div className="primary-nav">
-                  <NavLink to="/">Home</NavLink>
-                  <NavLink to="/about">About Us</NavLink>
-                  <NavLink to="/products">Products</NavLink>
-                  <NavLink to="/blogs">Blogs</NavLink>
-                  <NavLink to="/contact">Contact Us</NavLink>
+                  <NavLink to="/">{t('Home')}</NavLink>
+                  <NavLink to="/about">{t('About Us')}</NavLink>
+                  <NavLink to="/products">{t('Products')}</NavLink>
+                  <NavLink to="/blogs">{t('Blogs')}</NavLink>
+                  <NavLink to="/contact">{t('Contact Us')}</NavLink>
                   {/* <NavLink to={loggedin ? "/my-account" : "/login"}>
                     <FaRegUser size={24} />
                   </NavLink> */}
@@ -108,10 +111,9 @@ function Navbar({ loggedin = !true }) {
               </div>
 
               <div className="secondary-nav">
-
                 <NavLink to={loggedin ? "/my-account" : "/login"}>
                   {/* <FaRegUser size={25} />  */}
-                  Profile
+                  {t('Profile')}
                   {/* Client Portal */}
                 </NavLink>
                 <div className="search-container">
@@ -182,11 +184,11 @@ function Navbar({ loggedin = !true }) {
             className={`mobile-nav ${toggleMenu ? "expanded" : "collapsed"}`}
           >
             <div className="mobile-menu-links">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/about">About Us</NavLink>
-              <NavLink to="/products">Products</NavLink>
-              <NavLink to="/blogs">Blogs</NavLink>
-              <NavLink to="/contact">Contact Us</NavLink>
+            <NavLink to="/">{t('Home')}</NavLink>
+                  <NavLink to="/about">{t('About Us')}</NavLink>
+                  <NavLink to="/products">{t('Products')}</NavLink>
+                  <NavLink to="/blogs">{t('Blogs')}</NavLink>
+                  <NavLink to="/contact">{t('Contact Us')}</NavLink>
             </div>
           </div>
         </nav>

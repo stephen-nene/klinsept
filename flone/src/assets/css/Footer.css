@@ -1,11 +1,11 @@
 /* Dark and light mode background colors */
 .bg-light {
-    background-color: #00a2ff; /* equivalent to bg-sky-950 */
+    background-color: #00a2ff; 
     color: #000000;
 }
 
 .bg-dark {
-    background-color: #38bdf8; /* equivalent to bg-sky-500 */
+    background-color: #38bdf8;
 }
 
 /* Layout and typography */
@@ -30,29 +30,47 @@ footer .container {
 
 footer .section-title {
     margin-bottom: 16px;
-    font-size: 0.875rem;
+    font-size: 0.975rem;
     font-weight: 600;
     text-transform: uppercase;
     text-decoration: underline;
 }
 
-footer .section-link {
+footer .section-links a  {
     display: block;
     margin-bottom: 16px;
     font-weight: 500;
-    color: #2d333c; /* text-gray-400 equivalent */
+    color: #2d3b3c; 
+}
+footer .section-links  p {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: 500;
+    color: #2d3b3c; 
+}
+footer .work-hours  div {
+    line-height: 1px;
+    /* display: flex; */
+    margin-bottom: 20px;
+    /* font-weight: 500; */
+    color: #2d3b3c; 
 }
 
-footer .section-link:hover {
-    text-decoration: underline;
+footer .section-links a:hover {
+    color: #10adc9; 
 }
 
+footer .section-links a.active   {
+    color: #10adc9; 
+}
 footer .text-center {
-    background-color: #69656543;
-    text-align: center;
-    padding: 6px;
+    background-color: #447e8843;
+    padding: 20px;
     border-radius: 10px;
-    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between; /* Even spacing */
 }
 
 footer .text-gray-400 {
@@ -62,16 +80,23 @@ footer .text-gray-400 {
 /* Social media icon styling */
 footer .social-icons {
     display: flex;
-    gap: 16px;
+    gap: 36px;
 }
 
-footer .social-icon-link {
-    font-size:larger;
+footer .social-icons a{
+    font-size: larger;
     color: #94a3b8;
     transition: color 0.2s;
 }
 
-footer .social-icon-link:hover {
-    color: #000000; /* Light hover color */
+footer .social-icons a:hover {
+    color: #000000; 
 }
-
+/* Media query for small screens */
+@media (max-width: 600px) {
+    footer .text-center {
+        flex-direction: column; /* Stacks elements vertically on small screens */
+        align-items: center;
+        gap: 20px;
+    }
+}

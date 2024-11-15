@@ -1,5 +1,4 @@
 import React from "react";
-import "../assets/css/Footer.css"; // Import the CSS file
 import {
   FaTiktok,
   FaXTwitter,
@@ -7,145 +6,77 @@ import {
   FaGithub,
   FaFacebookF,
 } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import FooterNewsletter from "./footer/FooterNewsletter";
+import "../assets/css/Footer.css";
+
+import { useTranslation } from "react-i18next";
 
 export default function Footer({ darkMode = !true }) {
+  const { t } = useTranslation();
+
   return (
     <footer className={darkMode ? "bg-dark" : "bg-light"}>
       <div className="container">
         <div className="footer-grid">
-          <div>
-            <h2 className={`section-title`}>Company</h2>
-            <ul>
-              <li>
-                <Link className="section-link" to="/about">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="/contact">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="#">
-                  Brand Center
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="/blogs">
-                  Blog
-                </Link>
-              </li>
-            </ul>
+          <div className="section-links">
+            <h2 className="section-title">{t("Company")}</h2>
+            <NavLink to="/about">{t("About Us")}</NavLink>
+            <NavLink to="/contact">{t("Contact Us")}</NavLink>
+            <NavLink to="/products">{t("Products")}</NavLink>
+            <NavLink to="/blogs">{t("Blogs")}</NavLink>
+            <Link href="/">{t("FAQs")}</Link>
+          </div>
+          <div className="work-hours">
+            <h2 className="section-title">{t("Working Hours")}</h2>
+            <div>
+              <p>{t("Monday to Friday")}: </p>
+              <span className="text-success">9:00 AM - 5:00 PM</span>
+            </div>
+            <div>
+              <p>{t("Saturday")}: </p>
+              <span className="text-warning">10:00 AM - 4:00 PM</span>
+            </div>
+            <div>
+              <p>{t("Sunday")}: </p>
+              <span className="text-danger">{t("Closed")}</span>
+            </div>
+          </div>
+
+          <div className="section-links">
+            <h2 className="section-title">{t("Categories")}</h2>
+            <Link to="/products">{t("Antiseptics")}</Link>
+            <Link to="/products">{t("Detergents")}</Link>
+            <Link to="/products">{t("Handwash")}</Link>
+            <Link to="/products">{t("Disinfectants")}</Link>
           </div>
           <div>
-            <h2 className="section-title">Help center</h2>
-            <ul>
-              <li>
-                <a className="section-link" href="/">
-                  Discord Server
-                </a>
-              </li>
-              <li>
-                <a className="section-link" href="/">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a className="section-link" href="/">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a className="section-link" href="/">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="section-title">Categories</h2>
-            <ul>
-              <li>
-                <Link className="section-link" to="/products">
-                  Antiseptics
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="/products">
-                  Detergents
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="/products">
-                  Handwash
-                </Link>
-              </li>
-              <li>
-                <Link className="section-link" to="/products">
-                  Disinfectants
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
+            <h3 className="section-title">{t("SUBSCRIBE")}</h3>
             <FooterNewsletter />
           </div>
         </div>
-        <div className={`text-center `}>
-          <span>
-            © 2024{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://klinsept.vercel.app/"
-            >
-              Klinsept
-            </a>
-            . All Rights Reserved.
-          </span>
-          <div className="social-icons">
-            <Link
-              to="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-link"
-            >
-              <FaFacebookF />
-            </Link>
-            <Link
-              to="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-link"
-            >
-              <FaInstagram />
-            </Link>
-            <Link
-              target="_blank"
-              className="social-icon-link"
-              rel="noopener noreferrer"
-            >
-              <FaXTwitter />
-            </Link>
-            <Link
-              to="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-link"
-            >
-              <FaGithub />
-            </Link>
-            <Link
-              to="/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-link"
-            >
-              <FaTiktok />
-            </Link>
+        <div className="footer">
+          <div className="text-center flex justify-between items-center">
+            <span className="copyright">
+              © 2024 <Link to="/">Klinsept sprl</Link>. {t("All Rights Reserved")}
+            </span>
+            <div className="social-icons">
+              <Link to="/" target="_blank">
+                <FaFacebookF />
+              </Link>
+              <Link to="/" target="_blank">
+                <FaInstagram />
+              </Link>
+              <Link target="_blank">
+                <FaXTwitter />
+              </Link>
+              <Link to="/" target="_blank">
+                <FaGithub />
+              </Link>
+              <Link to="/" target="_blank">
+                <FaTiktok />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

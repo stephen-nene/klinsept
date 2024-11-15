@@ -5,6 +5,8 @@ import React, { Fragment } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import LanguageCurrencyChanger from "./LanguageCurrencyChanger.j";
+import { FaWhatsapp } from "react-icons/fa";
+
 const LayoutOne = ({ children, headerTop, headerPositionClass }) => {
   return (
     <Fragment>
@@ -12,6 +14,14 @@ const LayoutOne = ({ children, headerTop, headerPositionClass }) => {
         <LanguageCurrencyChanger />
       </div>
       <Navbar />
+      <a
+        href="https://wa.me/yourwhatsappnumber" // Replace with your WhatsApp number
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-button"
+      >
+        <FaWhatsapp size={40} color="#fff" />
+      </a>
       {/* <Header top={headerTop} headerPositionClass={headerPositionClass} /> */}
       {children}
       <Footer />

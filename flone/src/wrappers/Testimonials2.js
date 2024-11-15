@@ -2,6 +2,7 @@ import React from "react";
 import icon from "../assets/icon.jpg";
 import "../assets/css/Testimonial.css";
 import SectionTitle from "../components/SectionTitle";
+import { useTranslation } from "react-i18next";
 
 // Array of testimonials
 const testimonialsData = [
@@ -32,14 +33,15 @@ const testimonialsData = [
 ];
 
 function Testimonial() {
+  const { t } = useTranslation(); // For translation
+
   return (
     <div className="testimonial-container">
       <SectionTitle
-        titleText="What Our Clients Say"
-        subTitleText="We are committed to delivering tailored cleaning and disinfectant solutions that meet the unique needs of your business."
-        subtitleColorClass="text-muted"
+        titleText={t("What Our Clients Say")}
+        // subTitleText={t("We are committed to delivering tailored cleaning and disinfectant solutions that meet the unique needs of your business.")}
         positionClass="text-center"
-        spaceClass="mb-30"
+        spaceClass="mb-0"
       />
       <div className="testimonial-wrapper">
         <div className="testimonial-grid">

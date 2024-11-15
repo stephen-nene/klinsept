@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-
+import i18n from '../helpers/i18n';
 function LanguageCurrencyChanger() {
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
 
+
   const handleLanguageChange = (event) => {
-    setSelectedLanguage(event.target.value);
-    // Implement logic to change language, e.g., using i18n or other methods
-  };
+    const language = event.target.value;
+    console.log(language)
+    setSelectedLanguage(language);
+      i18n.changeLanguage(language);
+    };
 
   const handleCurrencyChange = (event) => {
     setSelectedCurrency(event.target.value);
@@ -22,9 +25,9 @@ function LanguageCurrencyChanger() {
           onChange={handleLanguageChange} 
           className="form-select"
         >
-          <option value="English">English</option>
-          <option value="French">French</option>
-          <option value="Swahili">Swahili</option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="sw">Swahili</option>
         </select>
       </div>
 
