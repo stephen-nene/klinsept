@@ -1,188 +1,114 @@
-import PropTypes from "prop-types";
-import React, {  } from "react";
+import React from "react";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import Card from "react-bootstrap/Card";
-import Accordion from "react-bootstrap/Accordion";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FcPhone, FcBusinessman, FcVoicemail } from "react-icons/fc";
+import { FaUserCircle, FaEnvelope, FaPhone, FaEdit } from "react-icons/fa";
+import "../../assets/css/MyAccount.css"; // We'll create a custom CSS file for additional styling
+import toast from "react-hot-toast";
 
 const MyAccount = () => {
-  const { pathname } = useLocation();
+  const authData = useSelector((state) => state.app.authData?.user);
+
+  const profileImageUrl =
+    authData?.profile_image || "https://via.placeholder.com/300";
 
   return (
-    <div className="mt-90">
+    <div className="my-account-wrapper">
       <MetaTags>
-        <title> Klinsept | My Account</title>
+        <title>Klinsept | My Account</title>
         <meta
           name="description"
-          content="Compare page of  react minimalist eCommerce template."
+          content="User profile and account management page."
         />
       </MetaTags>
       <BreadcrumbsItem to={"/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={pathname}>
-        My Account
-      </BreadcrumbsItem>
+      <BreadcrumbsItem>My Account</BreadcrumbsItem>
+
       <LayoutOne headerTop="visible">
-        {/* breadcrumb */}
         <Breadcrumb />
-        
-        <div className="myaccount-area pb-80 pt-100">
-          <div className="container">
-            <div className="row">
-              <div className="ml-auto mr-auto col-lg-9">
-                <div className="myaccount-wrapper">
-                  <Accordion defaultActiveKey="0">
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="0">
-                          <h3 className="panel-title">
-                            <span>1 .</span> Edit your account information{" "}
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper">
-                            <div className="account-info-wrapper">
-                              <h4>My Account Information</h4>
-                              <h5>Your Personal Details</h5>
-                            </div>
-                            <div className="row">
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>First Name</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Last Name</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Email Address</label>
-                                  <input type="email" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Telephone</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Fax</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
-                            </div>
-                          </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="1">
-                          <h3 className="panel-title">
-                            <span>2 .</span> Change your password
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper">
-                            <div className="account-info-wrapper">
-                              <h4>Change Password</h4>
-                              <h5>Your Password</h5>
-                            </div>
-                            <div className="row">
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Password</label>
-                                  <input type="password" />
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Password Confirm</label>
-                                  <input type="password" />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
-                            </div>
-                          </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="2">
-                          <h3 className="panel-title">
-                            <span>3 .</span> Modify your address book entries{" "}
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="2">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper">
-                            <div className="account-info-wrapper">
-                              <h4>Address Book Entries</h4>
-                            </div>
-                            <div className="entries-wrapper">
-                              <div className="row">
-                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                  <div className="entries-info text-center">
-                                    <p>John Doe</p>
-                                    <p>Paul Park </p>
-                                    <p>Lorem ipsum dolor set amet</p>
-                                    <p>NYC</p>
-                                    <p>New York</p>
-                                  </div>
-                                </div>
-                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                  <div className="entries-edit-delete text-center">
-                                    <button className="edit">Edit</button>
-                                    <button>Delete</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
-                            </div>
-                          </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                  </Accordion>
+        <Container className="py-5">
+          <Row className="justify-content-center">
+            <Col md={10} lg={8}>
+              <Card className="profile-card shadow-lg">
+                <div className="profile-header text-center position-relative">
+                  <div className="profile-image-container">
+                    <img
+                      src={profileImageUrl}
+                      alt="Profile"
+                      className="profile-image rounded-circle"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/300";
+                      }}
+                    />
+                    <Button
+                      variant="outline-light"
+                      className="edit-profile-btn"
+                    >
+                      <FaEdit /> 
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+                <Card.Body className="pt-5 text-center">
+                  <h2 className="mb-3">
+                    {authData?.first_name} {authData?.last_name}
+                  </h2>
+                  <p className="text-muted mb-4">{authData?.email}</p>
+
+                  <Row>
+                    <Col md={6}>
+                      <Card className="mb-4 info-card">
+                        <Card.Body>
+                          <h5 className="card-title">
+                            <FaUserCircle className="me-2 text-primary" />
+                            Personal Information
+                          </h5>
+                          <div className="info-item">
+                            <strong>First Name:</strong>{" "}
+                            {authData?.first_name || "N/A"}
+                          </div>
+                          <div className="info-item">
+                            <strong>Last Name:</strong>{" "}
+                            {authData?.last_name || "N/A"}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                    <Col md={6}>
+                      <Card className="info-card">
+                        <Card.Body>
+                          <h5 className="card-title">
+                            <FaEnvelope className="me-2 text-success" />
+                            Contact Information
+                          </h5>
+                          <div className="info-item">
+                            <strong>Email:</strong> {authData?.email || "N/A"}
+                          </div>
+                          <div className="info-item">
+                            <FaPhone className="me-2" />
+                            {authData?.phone_number || "N/A"}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <Card.Footer>
+                    <Button onClick={()=>toast.error('loggin you out')} variant="danger" className="w-20">
+                      logout
+                    </Button>
+                  </Card.Footer>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </LayoutOne>
     </div>
   );
-};
-
-MyAccount.propTypes = {
-  location: PropTypes.object
 };
 
 export default MyAccount;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { setUserData } from "../redux/actions/appAction";
 
 // Use the environment variables
-const API_URL = "http://192.168.1.88:8000/";
+const API_URL = "http://192.168.1.15:8000/";
 // const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 // const API_URL2 = process.env.REACT_APP_API_URL2;

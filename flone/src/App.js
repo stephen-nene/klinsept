@@ -27,7 +27,7 @@ const Register = lazy(() => import("./pages/auth/Register"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 
-const App = ({ userData }) => {
+const App = ({ authData }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,13 +40,9 @@ const App = ({ userData }) => {
         setIsLoading(false); // Set loading state to false after fetching
       }
     };
-
     fetchData(); // Fetch data on initial load
   }, []);
 
-  if (userData) {
-    console.log("User data:", userData);
-  }
   if (isLoading) {
     // Show the preloader or loading UI while fetching products
     return (
@@ -108,11 +104,11 @@ const App = ({ userData }) => {
 };
 
 App.propTypes = {
-  userData: PropTypes.object, // Adjust based on the structure of userData
+  userData: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  userData: state.app.userData, // Mapping the Redux state to component props
+  authData: state.app.authData, // Mapping the Redux state to component props
 });
 
 // Connecting the component to Redux

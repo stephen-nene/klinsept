@@ -33,7 +33,6 @@ const ProductGridTwo = ({
 
   return (
     <Fragment>
-
       <div className="products-container justify-content-center flex-wrap">
         {products.map((product, index) => {
           // Calculate converted price

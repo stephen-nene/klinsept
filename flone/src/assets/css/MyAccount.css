@@ -1,0 +1,57 @@
+.my-account-wrapper {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+  }
+  
+  .profile-card {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 200px;
+  }
+  
+  .profile-image-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .edit-profile-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 70%;
+    transform: translateX(-50%);
+    border-radius: 50px;
+    padding: 8px 20px;
+  }
+  
+  .info-card {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .info-item {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .card-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #333;
+  }

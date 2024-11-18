@@ -15,7 +15,7 @@ import Logo from "../assets/logo.png";
 import "../assets/css/Navbar.css";
 import { useTranslation } from "react-i18next";
 
-function Navbar({ loggedin = !true }) {
+function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -28,8 +28,9 @@ function Navbar({ loggedin = !true }) {
 
 
   const cartData = useSelector((state) => state.cartData);
-  // const wishlistData = useSelector((state) => state.wishlistData);
+  const authData = useSelector((state) => state.app.authData);
   const compareData = useSelector((state) => state.compareData);
+  const loggedIn = authData?.loggedIn
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,14 +105,14 @@ function Navbar({ loggedin = !true }) {
                   <NavLink to="/products">{t('Products')}</NavLink>
                   <NavLink to="/blogs">{t('Blogs')}</NavLink>
                   <NavLink to="/contact">{t('Contact Us')}</NavLink>
-                  {/* <NavLink to={loggedin ? "/my-account" : "/login"}>
+                  {/* <NavLink to={loggedIn ? "/my-account" : "/login"}>
                     <FaRegUser size={24} />
                   </NavLink> */}
                 </div>
               </div>
 
               <div className="secondary-nav">
-                <NavLink to={loggedin ? "/my-account" : "/login"}>
+                <NavLink to={loggedIn ? "/my-account" : "/login"}>
                   {/* <FaRegUser size={25} />  */}
                   {t('Profile')}
                   {/* Client Portal */}

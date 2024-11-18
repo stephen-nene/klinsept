@@ -5,8 +5,8 @@ import {
   FaShoppingCart,
   FaAngleRight,
   FaAngleLeft,
-  FaExchangeAlt
-} from "react-icons/fa"; 
+  FaExchangeAlt,
+} from "react-icons/fa";
 export const ProductModal = ({ show, handleClose, productData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -15,7 +15,7 @@ export const ProductModal = ({ show, handleClose, productData }) => {
     if (currentIndex < productData.image.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      setCurrentIndex(0); // loop back to the first image
+      setCurrentIndex(0);
     }
   };
 
@@ -23,7 +23,7 @@ export const ProductModal = ({ show, handleClose, productData }) => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      setCurrentIndex(productData.image.length - 1); // loop to the last image
+      setCurrentIndex(productData.image.length - 1);
     }
   };
 
@@ -36,23 +36,17 @@ export const ProductModal = ({ show, handleClose, productData }) => {
       <Modal.Header closeButton>
         <Modal.Title>{productData.name}</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="d-flex">
-        {/* Custom Carousel for product images */}
-        <div
-          className="custom-carousel-container"
-          style={{ position: "relative" }}
-        >
-          <button className="carousel-button prev" onClick={prevSlide}>
-            <FaAngleLeft />
-          </button>
+      <Modal.Body className="d-fle">
+        <div className="custom-carousel-container">
+          <FaAngleLeft onClick={prevSlide} />
+
           <img
             className="custom-carousel-image"
             src={productData.image[currentIndex]}
             alt={`Product ${currentIndex + 1}`}
           />
-          <button className="carousel-button next" onClick={nextSlide}>
-            <FaAngleRight />
-          </button>
+
+          <FaAngleRight onClick={nextSlide} />
         </div>
 
         {/* Spacing between the carousel and product details */}
@@ -75,8 +69,6 @@ export const ProductModal = ({ show, handleClose, productData }) => {
       </Modal.Body>
       <Modal.Footer>
         <div className="d-flex align-items-center justify-content-between w-100">
-          {/* Love, Add to Cart, Compare Buttons */}
-
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>

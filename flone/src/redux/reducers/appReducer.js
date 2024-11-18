@@ -1,7 +1,9 @@
 // appReducer.js
 const initialState = {
-  darkMode: localStorage.getItem("darkMode") === "true",
-  userData: [],
+  darkMode: localStorage.getItem("darkMode") === "true" || false,
+  authData: {
+    loggedIn: false,
+  },
 };
 
 const appReducer = (state = initialState, action) => {
@@ -14,8 +16,11 @@ const appReducer = (state = initialState, action) => {
     case "SET_USER_DATA":
       return {
         ...state,
-        userData: action.payload,
-      }
+        authData: {
+          loggedIn: true,
+          ...action.payload,
+        },
+      };
 
     default:
       return state;
