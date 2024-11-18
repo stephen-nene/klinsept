@@ -13,7 +13,7 @@ import App from "./App";
 import "./assets/scss/style.scss";
 import '../src/assets/css/index.css'
 import * as serviceWorker from "./serviceWorker";
-
+import { Toaster } from "react-hot-toast";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -28,6 +28,7 @@ store.dispatch(fetchProducts(products));
 
 ReactDOM.render(
   <Provider store={store}>
+    <Toaster />
     <App />
   </Provider>,
   document.getElementById("root")

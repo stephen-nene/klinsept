@@ -17,7 +17,7 @@ import "../../assets/css/ProductCard.css";
 import { Card } from "react-bootstrap";
 import { ProductModal } from "../../components/ProductModal";
 import { useToasts } from "react-toast-notifications";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const ProductGridTwo = ({
   products,
@@ -33,7 +33,6 @@ const ProductGridTwo = ({
 
   return (
     <Fragment>
-      <Toaster />
 
       <div className="products-container justify-content-center flex-wrap">
         {products.map((product, index) => {
