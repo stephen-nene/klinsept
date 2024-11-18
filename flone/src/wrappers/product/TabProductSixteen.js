@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Tab from "react-bootstrap/Tab";
-import Nav from "react-bootstrap/Nav";
+import {Tab, Nav} from "react-bootstrap";
 import ProductGridTwo from "./ProductGridTwo";
 import SectionTitle from "../../components/SectionTitle";
 

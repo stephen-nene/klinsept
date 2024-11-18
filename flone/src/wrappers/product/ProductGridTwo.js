@@ -11,19 +11,19 @@ import {
   AiOutlineShoppingCart,
   AiOutlineEye,
   AiOutlineSwap,
+  AiOutlineCloseCircle,
 } from "react-icons/ai";
 import "../../assets/css/ProductCard.css";
 import { Card } from "react-bootstrap";
 import { ProductModal } from "../../components/ProductModal";
-import {useToasts} from 'react-toast-notifications'
+import { useToasts } from "react-toast-notifications";
+import { toast, Toaster } from "react-hot-toast";
 
 const ProductGridTwo = ({
   products,
   currency,
   addToCart,
-  addToWishlist,
   addToCompare,
-  cartItems,
   wishlistItems,
   compareItems,
 }) => {
@@ -33,12 +33,17 @@ const ProductGridTwo = ({
 
   return (
     <Fragment>
+      <Toaster />
+
       <div className="products-container justify-content-center flex-wrap">
         {products.map((product, index) => {
           // Calculate converted price
           const convertedPrice = currency.currencyRate
             ? (product.price * currency.currencyRate).toFixed(2)
             : product.price; // Use default price if no rate
+          const isProductInCompare = compareItems.some(
+            (item) => item.id === product.id
+          );
 
           return (
             <Card key={index} className="product-car mb-3">
@@ -58,15 +63,31 @@ const ProductGridTwo = ({
                     className="icon"
                     title="View Details"
                   />
-                  <AiOutlineSwap onClick={()=>{
-                    addToWishlist(product, addToast);
-                  }} className="icon" title="Compare" />
+                  {isProductInCompare ? (
+                    <AiOutlineCloseCircle
+                      onClick={() => {
+                        toast.error("Item is already in compare");
+                      }}
+                      className="icon compare-icon active"
+                      title="Already in Compare"
+                    />
+                  ) : (
+                    <AiOutlineSwap
+                      onClick={() => {
+                        addToCompare(product, addToast);
+                      }}
+                      className="icon"
+                      title="Add to Compare"
+                    />
+                  )}
                 </div>
               </div>
               <Card.Body>
                 <div className="d-flex align-items-center justify-content-between">
                   <Card.Title className="product-name">
-                    {product.name}
+                    <Card.Link href={`product/${product.id}`}>
+                      {product.name}
+                    </Card.Link>
                   </Card.Title>
                   <AiOutlineHeart
                     className="heart-icon"
@@ -74,7 +95,7 @@ const ProductGridTwo = ({
                   />
                 </div>
 
-                <Card.Text className="product-price">
+                <Card.Text className="text-left product-price">
                   {currency.currencySymbol || "$"} {convertedPrice}
                 </Card.Text>
               </Card.Body>
