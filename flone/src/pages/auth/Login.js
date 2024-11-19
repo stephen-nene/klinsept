@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import MetaTags from "react-meta-tags";
 import { Link, useNavigate } from "react-router-dom";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
@@ -9,13 +9,12 @@ import { useLocation } from "react-router-dom";
 import { Spinner, Nav, Form, Button, Alert } from "react-bootstrap";
 import { LoginFetch } from "../../helpers/backendFectch";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const Login = ({ authData }) => {
   const { pathname } = useLocation();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [validated, setValidated] = useState(false);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,17 +28,13 @@ const Login = ({ authData }) => {
     } else {
       setLoading(true);
       try {
-        await LoginFetch(loginData, dispatch);
-        setError("");
-        setMessage("Login successful. redirecting you ...");
+        await LoginFetch(loginData, dispatch, toast);
         setTimeout(() => {
           navigate("/my-account");
         }, 4000);
-      } catch (error) {
-        setMessage("");
-        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     setValidated(true);
@@ -87,8 +82,8 @@ const Login = ({ authData }) => {
                         validated={validated}
                         onSubmit={handleLoginSubmit}
                       >
-                        {error && <Alert variant="danger">{error}</Alert>}
-                        {message && <Alert variant="success">{message}</Alert>}
+                        {/* {error && <Alert variant="danger">{error}</Alert>}
+                        {message && <Alert variant="success">{message}</Alert>} */}
 
                         <Form.Group controlId="formEmail">
                           <Form.Label>Email</Form.Label>

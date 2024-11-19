@@ -26,7 +26,7 @@ export const registerFetch = async (registerData) => {
   }
 };
 
-export const LoginFetch = async (loginData, dispatch) => {
+export const LoginFetch = async (loginData, dispatch, toast) => {
   try {
     const response = await axios.post(`${API_URL}auth/login/`, loginData, {
       headers: {
@@ -41,11 +41,9 @@ export const LoginFetch = async (loginData, dispatch) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      const errorMessage =
-        error.response.data.detail || "An error occurred. Please try again.";
-      throw new Error(errorMessage);
+      toast(error.response.data.detail || "An error occurred. Please try again.");
     } else {
-      throw new Error("Network error. Please check your connection.");
+      toast("Network error. Please check your connection.");
     }
   }
 };
