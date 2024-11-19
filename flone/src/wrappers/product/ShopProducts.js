@@ -83,7 +83,7 @@ const ShopProducts = ({
               <Card.Body>
                 <div className="d-flex align-items-center justify-content-between">
                   <Card.Title className="product-name">
-                    <Card.Link href={`product/${product.id}`}>
+                    <Card.Link href={`/product/${product.id}`}>
                       {product.name}
                     </Card.Link>
                   </Card.Title>
