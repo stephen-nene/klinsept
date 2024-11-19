@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import ProductGridTwo from "./ProductGridTwo";
+import ShopProducts from "./ShopProducts";
 import SectionTitle from "../../components/SectionTitle";
 
 const NewProductGrid = ({ category, limit }) => {
@@ -14,7 +14,7 @@ const NewProductGrid = ({ category, limit }) => {
           spaceClass="mb-60"
         />
         <div className="row five-column">
-          <ProductGridTwo
+          <ShopProducts
             category={category}
             type="new"
             limit={limit}

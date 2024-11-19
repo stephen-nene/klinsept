@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Tab, Nav} from "react-bootstrap";
-import ProductGridTwo from "./ProductGridTwo";
+import ShopProducts from "./ShopProducts";
 import SectionTitle from "../../components/SectionTitle";
 
 const TabProductSixteen = () => {
@@ -44,7 +44,7 @@ const TabProductSixteen = () => {
             {tabConfig.map((tab) => (
               <Tab.Pane eventKey={tab.key} key={tab.key}>
                 <div className="ro w">
-                  <ProductGridTwo
+                  <ShopProducts
                     category={selectedCategory}
                     type={tab.key}
                     limit={8}

@@ -36,7 +36,7 @@ const Home = () => {
         {/* gallery */}
         <Gallery />
         {/* product slider */}
-        <ProductSlider category="handwash" />
+        <ProductSlider category="Handwash" />
         {/* blog */}
         <BlogFeaturedFour />
 

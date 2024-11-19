@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useEffect, useState } from "react";
 import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 import Search from "./pages/Search";
 import { getProducts } from "./helpers/backendFectch";
@@ -27,8 +27,9 @@ const Register = lazy(() => import("./pages/auth/Register"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 
-const App = ({ authData }) => {
+const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const authData = useSelector((state) => state.app.authData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,7 +81,7 @@ const App = ({ authData }) => {
                 <Route path={"/blogs"} element={<Blogs />} />
                 {/* auth */}
                 <Route path={"/register"} element={<Register />} />
-                <Route path={"/login"} element={<Login />} />
+                <Route path={"/login"} element={<Login authData={authData} />} />
                 <Route path={"/reset/:otp"} element={<ResetPassword />} />
                 <Route path={"/forgot"} element={<ForgotPassword />} />
                 {/* Other pages */}

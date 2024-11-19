@@ -24,7 +24,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
                       getSortParams("category", "");
                       setActiveSort(e);
                     }}
-                  >
+                    >
                     <span className="checkmark" /> All Categories
                   </button>
                 </div>
@@ -35,8 +35,9 @@ const ShopSidebar = ({ products, getSortParams }) => {
                     <div className="sidebar-widget-list-left">
                       <button
                         onClick={(e) => {
-                          getSortParams("category", category);
                           console.log(category)
+                          getSortParams("category", category);
+                
                           setActiveSort(e);
                         }}
                       >

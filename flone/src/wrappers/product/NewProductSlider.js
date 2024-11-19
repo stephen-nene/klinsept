@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
 import SectionTitle from "../../components/SectionTitle";
-import ProductGridTwo from "./ProductGridTwo";
+import ShopProducts from "./ShopProducts";
 
 const NewProductSlider = ({
   spaceTopClass,
@@ -43,7 +43,7 @@ const NewProductSlider = ({
         />
         <div className="row">
           <Swiper {...settings}>
-            <ProductGridTwo
+            <ShopProducts
               category={category}
               limit={limit}
               sliderClassName="swiper-slide"

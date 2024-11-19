@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// const API_KEY = "689b448ff02f2c1ac6c5087db77ebb13";
-// const BASE_URL = `https://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`;
-
 const API_KEY = process.env.REACT_APP_EXCHANGE_RATE_API_KEY;
 const BASE_URL = process.env.REACT_APP_EXCHANGE_RATE_URL;
 
@@ -23,14 +20,14 @@ const fallbackRates = {
   SDG: { rate: 700.0, symbol: "SDG", country: "Sudan" },
 };
 
-// Utility for fetching rates (with caching and fallback)
+// Utility function to fetch rates from the API
 const fetchRates = async () => {
   try {
     // Fetch rates from external API
-    const response = await axios.get(BASE_URL+`access_key=${API_KEY}`);
+    const response = await axios.get(BASE_URL + `access_key=${API_KEY}`);
     const rates = response.data.rates;
 
-    // Merge fetched rates with fallback data
+    // Merge fetched rates with fallback data, filtering based on fallback data keys
     const mergedRates = Object.keys(fallbackRates).reduce((acc, currency) => {
       if (rates[currency]) {
         // If the rate is available from the API, update the rate and keep fallback symbol & country
@@ -45,17 +42,52 @@ const fetchRates = async () => {
       }
       return acc;
     }, {});
+    
     return mergedRates;
   } catch (error) {
     // Silently handle the error and return fallback rates
+    // console.error("Error fetching rates, using fallback data.");
     return fallbackRates;
   }
 };
 
-// Action to fetch currencies for East African countries
+// Utility function to get rates from local storage
+const getRatesFromLocalStorage = () => {
+  const storedData = localStorage.getItem("currencyRates");
+  if (!storedData) return null;
+
+  const { data, expiry } = JSON.parse(storedData);
+  if (new Date() > new Date(expiry)) {
+    // Data is expired
+    localStorage.removeItem("currencyRates");
+    return null;
+  }
+
+  return data;
+};
+
+// Function to save rates to local storage
+const saveRatesToLocalStorage = (rates) => {
+  const expiryTime = new Date();
+  expiryTime.setHours(expiryTime.getHours() + 24); // Set expiry to 24 hours
+
+  localStorage.setItem("currencyRates", JSON.stringify({
+    data: rates,
+    expiry: expiryTime.toISOString(),
+  }));
+};
+
+// Action to fetch currencies (check local storage first)
 export const fetchCurrencies = () => {
   return async (dispatch) => {
-    const rates = await fetchRates();
+    let rates = getRatesFromLocalStorage();
+    
+    if (!rates) {
+      // Fetch fresh data if not found in local storage or expired
+      rates = await fetchRates();
+      saveRatesToLocalStorage(rates);  // Save fetched data to local storage
+    }
+
     const currencyNames = Object.keys(rates);
 
     dispatch({
@@ -68,7 +100,13 @@ export const fetchCurrencies = () => {
 // Action to set the selected currency
 export const setCurrency = (currencyName) => {
   return async (dispatch) => {
-    const rates = await fetchRates();
+    let rates = getRatesFromLocalStorage();
+
+    if (!rates) {
+      // Fetch fresh data if not found in local storage or expired
+      rates = await fetchRates();
+      saveRatesToLocalStorage(rates);  // Save fetched data to local storage
+    }
 
     if (rates[currencyName]) {
       dispatch({
@@ -81,7 +119,6 @@ export const setCurrency = (currencyName) => {
         },
       });
     } else {
-      // No log here to avoid showing error in the terminal
       console.error(`Currency ${currencyName} not found in rates.`);
     }
   };

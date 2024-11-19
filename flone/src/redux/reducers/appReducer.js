@@ -1,4 +1,3 @@
-// appReducer.js
 const initialState = {
   darkMode: localStorage.getItem("darkMode") === "true" || false,
   authData: {
@@ -21,7 +20,14 @@ const appReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
-
+    case "LOGOUT_USER_DATA":
+      return {
+        ...state,
+        authData: {
+          loggedIn: false, 
+          user: null
+        },
+      };
     default:
       return state;
   }

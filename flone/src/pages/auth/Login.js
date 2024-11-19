@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import MetaTags from "react-meta-tags";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
@@ -10,7 +10,7 @@ import { Spinner, Nav, Form, Button, Alert } from "react-bootstrap";
 import { LoginFetch } from "../../helpers/backendFectch";
 import { useDispatch } from "react-redux";
 
-const Login = () => {
+const Login = ({ authData }) => {
   const { pathname } = useLocation();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [validated, setValidated] = useState(false);
@@ -18,6 +18,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +31,10 @@ const Login = () => {
       try {
         await LoginFetch(loginData, dispatch);
         setError("");
-        setMessage("Login successful");
+        setMessage("Login successful. redirecting you ...");
+        setTimeout(() => {
+          navigate("/my-account");
+        }, 4000);
       } catch (error) {
         setMessage("");
         setError(error.message);

@@ -109,38 +109,6 @@ export const getIndividualCategories = products => {
   return individualProductCategories;
 };
 
-// get individual tags
-export const getIndividualTags = products => {
-  let productTags = [];
-  products &&
-    products.map(product => {
-      return (
-        product.tag &&
-        product.tag.map(single => {
-          return productTags.push(single);
-        })
-      );
-    });
-  const individualProductTags = getIndividualItemArray(productTags);
-  return individualProductTags;
-};
-
-// get individual colors
-export const getIndividualColors = products => {
-  let productColors = [];
-  products &&
-    products.map(product => {
-      return (
-        product.variation &&
-        product.variation.map(single => {
-          return productColors.push(single.color);
-        })
-      );
-    });
-  const individualProductColors = getIndividualItemArray(productColors);
-  return individualProductColors;
-};
-
 
 
 export const setActiveSort = e => {

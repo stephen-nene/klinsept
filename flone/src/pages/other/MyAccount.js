@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { useSelector } from "react-redux";
-import { FcPhone, FcBusinessman, FcVoicemail } from "react-icons/fc";
+import { useSelector, useDispatch } from "react-redux";
+// import { FcPhone, FcBusinessman, FcVoicemail } from "react-icons/fc";
 import { FaUserCircle, FaEnvelope, FaPhone, FaEdit } from "react-icons/fa";
 import "../../assets/css/MyAccount.css"; // We'll create a custom CSS file for additional styling
 import toast from "react-hot-toast";
+import { serverLogOut } from "../../helpers/backendFectch";
+import { useNavigate } from "react-router-dom";
+
 
 const MyAccount = () => {
   const authData = useSelector((state) => state.app.authData?.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const profileImageUrl =
     authData?.profile_image || "https://via.placeholder.com/300";
 
+
+
+    useEffect(()=>{
+      if(!authData){
+        // toast.success("Welcome back, " + authData?.name);
+        navigate("/login");
+      }
+    }
+    ,[authData,navigate])
+    
   return (
-    <div className="my-account-wrapper">
+    <div className="my-account-wrapper mt-80">
       <MetaTags>
         <title>Klinsept | My Account</title>
         <meta
@@ -48,7 +63,7 @@ const MyAccount = () => {
                       variant="outline-light"
                       className="edit-profile-btn"
                     >
-                      <FaEdit /> 
+                      <FaEdit />
                     </Button>
                   </div>
                 </div>
@@ -97,7 +112,14 @@ const MyAccount = () => {
                     </Col>
                   </Row>
                   <Card.Footer>
-                    <Button onClick={()=>toast.error('loggin you out')} variant="danger" className="w-20">
+                    <Button
+                      onClick={() => {
+                        // toast.error("loggin you out");
+                        serverLogOut(dispatch, toast);
+                      }}
+                      variant="danger"
+                      className="w-20"
+                    >
                       logout
                     </Button>
                   </Card.Footer>
