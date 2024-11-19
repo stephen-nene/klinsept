@@ -1,39 +1,31 @@
 import { SET_CURRENCY, SET_CURRENCIES } from "../actions/currencyActions";
 
+// Fallback rates with country data
+const fallbackRates = {
+  USD: { rate: 1, symbol: "$", country: "United States" },
+  EUR: { rate: 0.85, symbol: "€", country: "Eurozone" },
+  KES: { rate: 110.0, symbol: "KSh", country: "Kenya" },
+  UGX: { rate: 3700.0, symbol: "USh", country: "Uganda" },
+  TZS: { rate: 2300.0, symbol: "TSh", country: "Tanzania" },
+  RWF: { rate: 1200.0, symbol: "FRw", country: "Rwanda" },
+  BIF: { rate: 2070.0, symbol: "FBu", country: "Burundi" },
+  ETB: { rate: 55.0, symbol: "Br", country: "Ethiopia" },
+  SOS: { rate: 570.0, symbol: "Sh", country: "Somalia" },
+  SDG: { rate: 700.0, symbol: "SDG", country: "Sudan" },
+};
+
 const initState = {
-  currencySymbol: "€", // Default symbol for Euro
-  currencyName: "EUR",  // Default currency is Euro
-  currencyRate: 1,     // Default rate for Euro (1:1)
-  availableCurrencies: [], // To store the available currencies
+  currencySymbol: fallbackRates.KES.symbol,
+  currencyName: "KES",
+  currencyRate: fallbackRates.KES.rate,
+  availableCurrencies: Object.keys(fallbackRates),
 };
 
 const currencyReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_CURRENCY: {
       const { currencyName, currencyRate } = action.payload;
-
-      // Handle setting the currency based on the name
-      let currencySymbol = "€"; // Default symbol for Euro
-
-      if (currencyName === "USD") {
-        currencySymbol = "$";
-      } else if (currencyName === "KES") {
-        currencySymbol = "KSh";
-      } else if (currencyName === "BIF") {
-        currencySymbol = "FBu";
-      } else if (currencyName === "UGX") {
-        currencySymbol = "USh";
-      } else if (currencyName === "TZS") {
-        currencySymbol = "TSh";
-      } else if (currencyName === "RWF") {
-        currencySymbol = "Fr";
-      } else if (currencyName === "ETB") {
-        currencySymbol = "Br";
-      } else if (currencyName === "SOS") {
-        currencySymbol = "SSh";
-      } else if (currencyName === "SDG") {
-        currencySymbol = "SDG";
-      }
+      const currencySymbol = fallbackRates[currencyName]?.symbol || "$"; // Default to $ if not found
 
       return {
         ...state,
@@ -43,7 +35,6 @@ const currencyReducer = (state = initState, action) => {
       };
     }
     case SET_CURRENCIES: {
-      // Set the available currencies from the fetched data
       return {
         ...state,
         availableCurrencies: action.payload,

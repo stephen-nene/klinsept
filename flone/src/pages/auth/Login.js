@@ -6,7 +6,7 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { useLocation } from "react-router-dom";
-import { Spinner, Nav, Form, Button, Alert } from "react-bootstrap";
+import { Spinner, Nav, Form, Button } from "react-bootstrap";
 import { LoginFetch } from "../../helpers/backendFectch";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";

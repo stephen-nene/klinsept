@@ -2,11 +2,10 @@ import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getProductCartQuantity } from "../../helpers/product";
+// import { getProductCartQuantity } from "../../helpers/product";
 import { addToCart } from "../../redux/actions/cartActions";
 import { addToWishlist } from "../../redux/actions/wishlistActions";
 import { addToCompare } from "../../redux/actions/compareActions";
-import Rating from "./sub-components/ProductRating";
 
 const ProductDescriptionInfo = ({
   product,
@@ -20,17 +19,9 @@ const ProductDescriptionInfo = ({
   addToast,
   addToCart,
   addToWishlist,
-  addToCompare
+  addToCompare,
 }) => {
-  const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
-  );
   const [quantityCount, setQuantityCount] = useState(1);
-
-  const productCartQty = getProductCartQuantity(
-    cartItems,
-    product
-  );
 
   return (
     <div className="product-details-content ml-70">
@@ -47,50 +38,12 @@ const ProductDescriptionInfo = ({
           <span>{currency.currencySymbol + finalProductPrice} </span>
         )}
       </div>
-      {product.rating && product.rating > 0 ? (
-        <div className="pro-details-rating-wrap">
-          <div className="pro-details-rating">
-            <Rating ratingValue={product.rating} />
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
+
       <div className="pro-details-list">
-        <p>{product.shortDescription}</p>
+        <p>{product.description}</p>
       </div>
 
-      {product.variation ? (
-        <div className="pro-details-size-color">
-          <div className="pro-details-color-wrap">
-            <span>Color</span>
-            <div className="pro-details-color-content">
-              {product.variation.map((single, key) => {
-                return (
-                  <label
-                    className={`pro-details-color-content--single ${single.color}`}
-                    key={key}
-                  >
-                    <input
-                      type="radio"
-                      value={single.color}
-                      name="product-color"
-                      onChange={() => {
-                        setProductStock(single.size[0].stock);
-                        setQuantityCount(1);
-                      }}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-      {(
+      {
         <div className="pro-details-quality">
           <div className="cart-plus-minus">
             <button
@@ -108,36 +61,16 @@ const ProductDescriptionInfo = ({
               readOnly
             />
             <button
-              onClick={() =>
-                setQuantityCount(
-                  quantityCount < productStock - productCartQty
-                    ? quantityCount + 1
-                    : quantityCount
-                )
-              }
+              onClick={() => setQuantityCount(quantityCount + 1)}
               className="inc qtybutton"
             >
               +
             </button>
           </div>
           <div className="pro-details-cart btn-hover">
-            {productStock && productStock > 0 ? (
-              <button
-                onClick={() =>
-                  addToCart(
-                    product,
-                    addToast,
-                    quantityCount
-                  )
-                }
-                disabled={productCartQty >= productStock}
-              >
-                {" "}
-                Add To Cart{" "}
-              </button>
-            ) : (
-              <button disabled>Out of Stock</button>
-            )}
+            <button onClick={() => addToCart(product, addToast, quantityCount)}>
+              Add To Cart
+            </button>
           </div>
           <div className="pro-details-wishlist">
             <button
@@ -168,7 +101,7 @@ const ProductDescriptionInfo = ({
             </button>
           </div>
         </div>
-      )}
+      }
       {product.category ? (
         <div className="pro-details-meta">
           <span>Categories :</span>
@@ -176,7 +109,7 @@ const ProductDescriptionInfo = ({
             {product.category.map((single, key) => {
               return (
                 <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                  <Link to={process.env.PUBLIC_URL + "/products"}>
                     {single}
                   </Link>
                 </li>
@@ -205,36 +138,6 @@ const ProductDescriptionInfo = ({
       ) : (
         ""
       )}
-
-      <div className="pro-details-social">
-        <ul>
-          <li>
-            <a href="//facebook.com">
-              <i className="fa fa-facebook" />
-            </a>
-          </li>
-          <li>
-            <a href="//dribbble.com">
-              <i className="fa fa-dribbble" />
-            </a>
-          </li>
-          <li>
-            <a href="//pinterest.com">
-              <i className="fa fa-pinterest-p" />
-            </a>
-          </li>
-          <li>
-            <a href="//twitter.com">
-              <i className="fa fa-twitter" />
-            </a>
-          </li>
-          <li>
-            <a href="//linkedin.com">
-              <i className="fa fa-linkedin" />
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
@@ -245,36 +148,26 @@ ProductDescriptionInfo.propTypes = {
   addToWishlist: PropTypes.func,
   addToast: PropTypes.func,
   cartItems: PropTypes.array,
-  compareItem: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),  // Allow both array or object
+  compareItem: PropTypes.oneOfType([PropTypes.array, PropTypes.object]), // Allow both array or object
   currency: PropTypes.object,
   discountedPrice: PropTypes.number,
   finalDiscountedPrice: PropTypes.number,
   finalProductPrice: PropTypes.number,
   product: PropTypes.object,
-  wishlistItem: PropTypes.object
+  wishlistItem: PropTypes.object,
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (
-      item,
-      addToast,
-      quantityCount
-    ) => {
-      dispatch(
-        addToCart(
-          item,
-          addToast,
-          quantityCount
-        )
-      );
+    addToCart: (item, addToast, quantityCount) => {
+      dispatch(addToCart(item, addToast, quantityCount));
     },
     addToWishlist: (item, addToast) => {
       dispatch(addToWishlist(item, addToast));
     },
     addToCompare: (item, addToast) => {
       dispatch(addToCompare(item, addToast));
-    }
+    },
   };
 };
 

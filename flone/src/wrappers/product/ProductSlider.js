@@ -27,7 +27,7 @@ const ProductSlider = ({  category }) => {
 
   return (
     <div
-      className={`related-product-area py-5 `}
+      className={`related-product-area `}
     >
       <div className="container">
         <SectionTitle

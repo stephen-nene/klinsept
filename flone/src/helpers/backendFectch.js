@@ -17,7 +17,7 @@ export const registerFetch = async (registerData) => {
       },
     });
     if (response.data) {
-      localStorage.setItem("userData", JSON.stringify(response.data));
+      // localStorage.setItem("userData", JSON.stringify(response.data));
     }
     return response.data;
   } catch (error) {
@@ -29,6 +29,7 @@ export const registerFetch = async (registerData) => {
 export const LoginFetch = async (loginData, dispatch, toast) => {
   try {
     const response = await axios.post(`${API_URL}auth/login/`, loginData, {
+      withCredentials: true,
       headers: {
         "x-api-key": API_KEY,
         "Content-Type": "application/json",

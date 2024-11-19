@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle";
 import '../../assets/css/gallery.css'
-
+import { useTranslation } from "react-i18next";
 
 const banners = [
   {
@@ -26,11 +26,12 @@ const banners = [
 ];
 
 const Gallery = () => {
+  const { t } = useTranslation();
   return (
     <div className="gallery-area">
 <SectionTitle
-  titleText="Gallery section"
-  subtitleText="Explore our wide range of high-quality products showcased in the gallery below."
+  titleText={t("Gallery section")}
+  subtitleText={t("Explore our wide range of high-quality products showcased in the gallery below.")}
   subtitleColorClass="text-muted"
   positionClass="text-center"
   spaceClass="mb-30"

@@ -2,14 +2,13 @@ import React, {  } from "react";
 import { useParams } from "react-router-dom";
 import LayoutOne from "../components/LayoutOne";
 import SectionTitle from "../components/SectionTitle";
-import ProductCard from "../components/ProductCard";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addToCart } from "../redux/actions/cartActions";
 import { addToWishlist } from "../redux/actions/wishlistActions";
 import { addToCompare } from "../redux/actions/compareActions";
 import '../assets/css/search.css'
-
+import ShopProducts from "../wrappers/product/ShopProducts";
 
 const Search = ({ cartItems, wishlistItems, compareItems, addToCart, addToWishlist, addToCompare }) => {
   const { searchParams } = useParams();
@@ -55,14 +54,8 @@ const relatedProducts = Array(10).fill({
         <Row className="p-5 justify-content-center">
           {dummyProducts.map((product, index) => (
             <Col xs={12} sm={6} md={5} lg={3} key={index} className="mb-4">
-              <ProductCard
+              <ShopProducts
                 product={product}
-                cartItems={cartItems}
-                wishlistItems={wishlistItems}
-                compareItems={compareItems}
-                addToCart={addToCart}
-                addToWishlist={addToWishlist}
-                addToCompare={addToCompare}
               />
             </Col>
           ))}
@@ -72,14 +65,8 @@ const relatedProducts = Array(10).fill({
         <Row className="p-5 justify-content-center">
           {relatedProducts.map((product, index) => (
             <Col xs={12} sm={6} md={5} lg={3} key={index} className="mb-4">
-              <ProductCard
-                product={product}
-                cartItems={cartItems}
-                wishlistItems={wishlistItems}
-                compareItems={compareItems}
-                addToCart={addToCart}
-                addToWishlist={addToWishlist}
-                addToCompare={addToCompare}
+              <ShopProducts
+                // product={product}
               />
             </Col>
           ))}

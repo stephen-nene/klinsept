@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import {Tab, Nav} from "react-bootstrap";
 import ShopProducts from "./ShopProducts";
 import SectionTitle from "../../components/SectionTitle";
-
+import { useTranslation } from "react-i18next";
 const TabProductSixteen = () => {
   const [selectedCategory, setSelectedCategory] = useState("Antiseptics");
+
+  const { t } = useTranslation();
 
   const tabConfig = [
     { key: "Antiseptics", label: "Antiseptics" },
@@ -17,8 +19,8 @@ const TabProductSixteen = () => {
     <div className={`product-are a py-5`}>
       <div className=" ">
         <SectionTitle
-          titleText="Our Products"
-          subtitleText="Explore our wide range of high-quality products tailored to meet your needs."
+          titleText={t("Our Products")}
+          subtitleText={t("Explore our wide range of high-quality products tailored to meet your needs.")}
           subtitleColorClass="text-muted"
           positionClass="text-center"
           spaceClass="mb-30"

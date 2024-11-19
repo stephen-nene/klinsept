@@ -26,7 +26,7 @@ const ProductImageGallery = ({ product }) => {
     spaceBetween: 10,
     loopedSlides: 4,
     loop: true,
-    effect: "fade"
+    effect: "slide"
   };
 
   const thumbnailSwiperParams = {
