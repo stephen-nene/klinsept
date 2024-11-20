@@ -91,14 +91,12 @@ function Navbar() {
         }`}
       >
         <nav>
-          <div className="nav-container">
             <div className="nav-inner-container">
               <div className="logo-container">
-                <div>
                   <Link to="/" className="logo-link text-center">
                     <img src={Logo} alt="klinset logo" />
                   </Link>
-                </div>
+              </div>
                 <div className="primary-nav">
                   <NavLink to="/">{t('Home')}</NavLink>
                   <NavLink to="/about">{t('About Us')}</NavLink>
@@ -109,7 +107,6 @@ function Navbar() {
                     <FaRegUser size={24} />
                   </NavLink> */}
                 </div>
-              </div>
 
               <div className="secondary-nav">
                 <NavLink to={loggedIn ? "/my-account" : "/login"}>
@@ -178,7 +175,6 @@ function Navbar() {
                   )}
                 </div>
               </div>
-            </div>
           </div>
 
           <div
