@@ -1,45 +1,89 @@
 import { SET_CURRENCY, SET_CURRENCIES } from "../actions/currencyActions";
 
-// Fallback rates with country data
-const fallbackRates = {
-  USD: { rate: 1, symbol: "$", country: "United States" },
-  EUR: { rate: 0.85, symbol: "€", country: "Eurozone" },
-  KES: { rate: 110.0, symbol: "KSh", country: "Kenya" },
-  UGX: { rate: 3700.0, symbol: "USh", country: "Uganda" },
-  TZS: { rate: 2300.0, symbol: "TSh", country: "Tanzania" },
-  RWF: { rate: 1200.0, symbol: "FRw", country: "Rwanda" },
-  BIF: { rate: 2070.0, symbol: "FBu", country: "Burundi" },
-  ETB: { rate: 55.0, symbol: "Br", country: "Ethiopia" },
-  SOS: { rate: 570.0, symbol: "Sh", country: "Somalia" },
-  SDG: { rate: 700.0, symbol: "SDG", country: "Sudan" },
-};
-
 const initState = {
-  currencySymbol: fallbackRates.KES.symbol,
-  currencyName: "KES",
-  currencyRate: fallbackRates.KES.rate,
-  availableCurrencies: Object.keys(fallbackRates),
+  currencies: {
+    USD: {
+      name: "USD",
+      symbol: "$",
+      rates: 1.0,
+      country: "United States",
+    },
+    EUR: {
+      name: "EUR",
+      symbol: "€",
+      rates: 0.9,
+      country: "European Union",
+    },
+    KES: {
+      name: "KES",
+      symbol: "KSh",
+      rates: 110.0,
+      country: "Kenya",
+    },
+    UGX: {
+      name: "UGX",
+      symbol: "USh",
+      rates: 3700.0,
+      country: "Uganda",
+    },
+    TZS: {
+      name: "TZS",
+      symbol: "TSh",
+      rates: 2300.0,
+      country: "Tanzania",
+    },
+    RWF: {
+      name: "RWF",
+      symbol: "FRw",
+      rates: 1150.0,
+      country: "Rwanda",
+    },
+    BIF: {
+      name: "BIF",
+      symbol: "FBu",
+      rates: 1900.0,
+      country: "Burundi",
+    },
+    ETB: {
+      name: "ETB",
+      symbol: "Br",
+      rates: 50.0,
+      country: "Ethiopia",
+    },
+    SOS: {
+      name: "SOS",
+      symbol: "Sh",
+      rates: 600.0,
+      country: "Somalia",
+    },
+    SDG: {
+      name: "SDG",
+      symbol: "ج.س.",
+      rates: 450.0,
+      country: "Sudan",
+    },
+  },
 };
 
 const currencyReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_CURRENCY: {
-      const { currencyName, currencyRate } = action.payload;
-      const currencySymbol = fallbackRates[currencyName]?.symbol || "$"; // Default to $ if not found
+      return {
+        ...state,
+        selectedCurrency: action.payload,
+      };
+    }
 
-      return {
-        ...state,
-        currencySymbol,
-        currencyRate,
-        currencyName,
-      };
-    }
     case SET_CURRENCIES: {
+      const { currencies } = action.payload;
       return {
         ...state,
-        availableCurrencies: action.payload,
+        currencies: {
+          ...currencies,
+        },
       };
     }
+
     default:
       return state;
   }

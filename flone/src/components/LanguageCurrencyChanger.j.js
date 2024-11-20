@@ -4,28 +4,21 @@ import { setCurrency, fetchCurrencies } from "../redux/actions/currencyActions";
 import i18n from "../helpers/i18n";
 
 function LanguageCurrencyChanger() {
+  const availableCurrencies = useSelector((state) => state.currencyData);
+
   const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const [selectedCurrency, setSelectedCurrency] = useState("EUR"); // Default is Euro
+  const [selectedCurrency, setSelectedCurrency] = useState(
+    availableCurrencies?.selectedCurrency?.name || "USD"
+  );
   const dispatch = useDispatch();
 
-  const availableCurrencies = useSelector(
-    (state) => state.currencyData
-  );
-  useEffect(() => {
-    // Fetch the list of available currencies when the component mounts
-    dispatch(fetchCurrencies());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCurrencies());
+  // }, [dispatch]);
 
   const handleLanguageChange = (event) => {
-    const language = event.target.value;
-    setSelectedLanguage(language);
-    i18n.changeLanguage(language);
-  };
-
-  const handleCurrencyChange = (event) => {
-    const currency = event.target.value;
-    setSelectedCurrency(currency);
-    dispatch(setCurrency(currency)); // Dispatch action to set the currency
+    setSelectedLanguage(event.target.value);
+    i18n.changeLanguage(event.target.value);
   };
 
   return (
@@ -49,16 +42,23 @@ function LanguageCurrencyChanger() {
         <select
           id="currency-select"
           value={selectedCurrency}
-          onChange={handleCurrencyChange}
+          onChange={(e) => {
+            const selectedCurrencyData =
+              availableCurrencies.currencies[e.target.value];
+            setSelectedCurrency(e.target.value);
+            dispatch(setCurrency(selectedCurrencyData));
+          }}
           className="form-select"
         >
-          {/* Map over available currencies and display them in the dropdown */}
-          {availableCurrencies.availableCurrencies &&
-            availableCurrencies.availableCurrencies.map((currency) => (
-              <option key={currency} value={currency}>
-                {currency}
-              </option>
-            ))}
+          {Object.entries(availableCurrencies.currencies).map(
+            ([currencyKey, currencyData]) => {
+              return (
+                <option key={currencyKey} value={currencyKey}>
+                  {currencyData.name} ({currencyData.country})
+                </option>
+              );
+            }
+          )}
         </select>
       </div>
     </div>

@@ -34,11 +34,13 @@ const ShopProducts = ({
   return (
     <Fragment>
       <div className="products-container justify-content-center flex-wrap">
+        {console.log(currency.selectedCurrency)}
         {finalProducts.map((product, index) => {
           // Calculate converted price
-          const convertedPrice = currency.currencyRate
-            ? (product.price * currency.currencyRate).toFixed(2)
-            : product.price; // Use default price if no rate
+          const convertedPrice = currency.selectedCurrency
+          ? (product.price * currency.selectedCurrency.rates).toFixed(2)
+          : product.price; // Fallback to the default price if no currency is selected
+      
           const isProductInCompare = compareItems.some(
             (item) => item.id === product.id
           );
@@ -94,7 +96,7 @@ const ShopProducts = ({
                 </div>
 
                 <Card.Text className="text-left product-price">
-                  {currency.currencySymbol || "$"} {convertedPrice}
+                  {currency.selectedCurrency?.symbol || "$"} {convertedPrice}
                 </Card.Text>
               </Card.Body>
             </Card>
