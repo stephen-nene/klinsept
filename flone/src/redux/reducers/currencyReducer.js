@@ -1,4 +1,4 @@
-import { SET_CURRENCY, SET_CURRENCIES } from "../actions/currencyActions";
+import { SET_CURRENCY, SET_CURRENCIES,SET_TIMESTAMP } from "../actions/currencyActions";
 
 const initState = {
   currencies: {
@@ -63,6 +63,7 @@ const initState = {
       country: "Sudan",
     },
   },
+  timestamp: null,
 };
 
 const currencyReducer = (state = initState, action) => {
@@ -75,15 +76,28 @@ const currencyReducer = (state = initState, action) => {
     }
 
     case SET_CURRENCIES: {
-      const { currencies } = action.payload;
+      const updatedCurrencies = { ...state.currencies };
+
+      // Update only the rates of each currency in the store
+      Object.keys(action.payload).forEach((currency) => {
+        if (updatedCurrencies[currency]) {
+          updatedCurrencies[currency] = {
+            ...updatedCurrencies[currency],
+            rates: action.payload[currency],
+          };
+        }
+      });
+
       return {
         ...state,
-        currencies: {
-          ...currencies,
-        },
+        currencies: updatedCurrencies,
       };
     }
-
+    case SET_TIMESTAMP:
+      return {
+        ...state,
+        timestamp: action.payload, // Set the timestamp of the last update
+      };
     default:
       return state;
   }

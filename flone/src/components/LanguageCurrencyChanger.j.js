@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrency, fetchCurrencies } from "../redux/actions/currencyActions";
+import {
+  setCurrency,
+  fetchCurrencyRates,
+} from "../redux/actions/currencyActions";
 import i18n from "../helpers/i18n";
 
 function LanguageCurrencyChanger() {
@@ -11,10 +14,10 @@ function LanguageCurrencyChanger() {
     availableCurrencies?.selectedCurrency?.name || "USD"
   );
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchCurrencies());
-  // }, [dispatch]);
+  // console.log(availableCurrencies);
+  useEffect(() => {
+    dispatch(fetchCurrencyRates());
+  }, [dispatch]);
 
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);

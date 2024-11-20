@@ -34,7 +34,6 @@ const ShopProducts = ({
   return (
     <Fragment>
       <div className="products-container justify-content-center flex-wrap">
-        {console.log(currency.selectedCurrency)}
         {finalProducts.map((product, index) => {
           // Calculate converted price
           const convertedPrice = currency.selectedCurrency
