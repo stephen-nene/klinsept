@@ -17,7 +17,6 @@ export const registerFetch = async (registerData) => {
       },
     });
     if (response.data) {
-      // localStorage.setItem("userData", JSON.stringify(response.data));
     }
     return response.data;
   } catch (error) {

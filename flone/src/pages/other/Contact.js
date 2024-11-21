@@ -1,12 +1,13 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import LocationMap from "../../components/contact/LocationMap";
+import LocationMap from "../../components/contact/LocationMap"; // Update import
 import { useLocation } from "react-router-dom";
 import { Card, Button, Form } from "react-bootstrap";
 import { FaFacebook, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const { pathname } = useLocation();
@@ -43,12 +44,6 @@ const Contact = () => {
         <Breadcrumb />
         <div className="contact-area pt-100 pb-100">
           <div className="container">
-            <div className="contact-map mb-10">
-              <LocationMap
-                latitude="-3.3508766806768415"
-                longitude="29.363613291290164"
-              />
-            </div>
             <div className="row">
               {/* Contact Info Cards */}
               <div className="col-lg-4 col-md-5">
@@ -62,10 +57,14 @@ const Contact = () => {
                   <Card.Body>
                     <Card.Title>Email</Card.Title>
                     <Card.Text>
-                      <a href="mailto:info@klinsept.com">info@klinsept.com</a>
+                      <Link target="_blank" to="mailto:info@klinsept.com">
+                        info@klinsept.com
+                      </Link>
                     </Card.Text>
                     <Card.Text>
-                      <a href="//klinsept.com">klinsept.com</a>
+                      <Link target="_blank" to="//klinsept.com">
+                        klinsept.com
+                      </Link>
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -78,28 +77,22 @@ const Contact = () => {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                <Card className="mb-3">
-                  <Card.Body>
-                    <Card.Title>Follow Us</Card.Title>
-                      <div className="contact-social text-center">
-                        <ul>
-                          <li>
-                            <a href="//facebook.com">
-                              <FaFacebook size={30} />
-                            </a>
-                          </li>
-                          <li>
-                            <a href="//pinterest.com">
-                              <FaLinkedinIn size={30} />
-                            </a>
-                          </li>
-                          <li>
-                            <a href="//twitter.com">
-                              <FaTwitter size={30} />
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                <Card className="mb-4 shadow-sm">
+                  <Card.Body className="text-left p-4">
+                    <Card.Title className="h5 mb-4 ">
+                      Follow Us
+                    </Card.Title>
+                    <div className="contact-icons">
+                      <Link to="https://www.facebook.com/" target="_blank">
+                        <FaFacebook size={35} />
+                      </Link>
+                      <Link to="https://www.linkedin.com/" target="_blank">
+                        <FaLinkedinIn size={35} />
+                      </Link>
+                      <Link to="https://www.x.com/" target="_blank">
+                        <FaTwitter size={35} />
+                      </Link>
+                    </div>
                   </Card.Body>
                 </Card>
               </div>
@@ -162,6 +155,13 @@ const Contact = () => {
                   </Card.Body>
                 </Card>
               </div>
+            </div>
+            <div className="contact-map mb-10">
+              {/* Pass latitude and longitude as props */}
+              <LocationMap
+                latitude={-3.3508766806768415}
+                longitude={29.363613291290164}
+              />
             </div>
           </div>
         </div>

@@ -1,37 +1,29 @@
+// LocationMap.js
 import React from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import { PropTypes } from "prop-types";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
-const FooterMap = props => {
-  const mapStyles = {
-    width: "100%",
-    height: "100%"
-  };
+const LocationMap = ({ latitude, longitude }) => {
+  const position = [latitude, longitude]; // Use the latitude and longitude props
 
   return (
-    <Map
-      google={props.google}
-      zoom={10}
-      style={mapStyles}
-      initialCenter={{ lat: props.latitude, lng: props.longitude }}
+    <MapContainer
+      center={position}
+      zoom={13}
+      style={{ width: "100%", height: "500px" }}
     >
-      <Marker
-        position={{ lat: props.latitude, lng: props.longitude }}
-        icon={{
-          url: `${process.env.PUBLIC_URL + "/assets/img/icon-img/2.png"}`
-        }}
-        animation={props.google.maps.Animation.BOUNCE}
+      {/* OpenStreetMap TileLayer */}
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">Klinsept</a> '
       />
-    </Map>
+      {/* Marker at the specified position */}
+      <Marker position={position}>
+        <Popup>Our Business Location!</Popup>
+      </Marker>
+    </MapContainer>
   );
 };
 
-FooterMap.propTypes = {
-  google: PropTypes.object,
-  latitude: PropTypes.string,
-  longitude: PropTypes.string
-};
-
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyB2D8wrWMY3XZnuHO6C31uq90JiuaFzGws"
-})(FooterMap);
+export default LocationMap;
