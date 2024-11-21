@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 import Fuse from "fuse.js";
 import ShopProducts from "../wrappers/product/ShopProducts";
 // import "../assets/css/search.css";
-
+import { useTranslation } from "react-i18next";
 const Search = ({ products }) => {
+  const { t } = useTranslation();
   const { searchParams } = useParams();
 
-  // Fuse.js options for advanced search
   const fuseOptions = {
     includeScore: true, // Include relevance score for sorting
     includeMatches: true, // Include matched indices for highlighting
@@ -22,26 +22,21 @@ const Search = ({ products }) => {
     distance: 100, // How far from the location a match can occur
     ignoreLocation: false, // Respect location for better relevance
     keys: [
-      "name", // Search in product name
-      "description", // Search in description
-      "category", // Search in category array
+      "name",
+      "description", 
+      "category", 
     ],
   };
 
   // Create Fuse.js instance
   const fuse = new Fuse(products.products, fuseOptions);
 
-  // Perform the search
-  const searchResults = fuse.search(searchParams);
-
-  // Extract matched items from results
-  const filteredProducts = searchResults.map((result) => ({
+  const filteredProducts = fuse.search(searchParams).map((result) => ({
     ...result.item,
     score: result.score, 
     matches: result.matches,
   }));
 
-  // Fallback products if no matches
   const fallbackProducts = products.products
     .sort(() => 0.5 - Math.random())
     .slice(0, 8);
@@ -54,7 +49,7 @@ const Search = ({ products }) => {
     <div className="mt-100">
       <LayoutOne headerTop="visible">
         <SectionTitle
-          titleText={`Search results for "${searchParams}"`}
+          titleText={`${t("Search results for")} "${searchParams}"`}
           positionClass="text-center"
           spaceClass="mt-20"
         />
@@ -65,10 +60,10 @@ const Search = ({ products }) => {
               <ShopProducts currentData={productsToDisplay} />
               <div className="d-grid m-10">
                 <SectionTitle
-                  titleText="Related products"
+                  titleText={t("Related products")}
                   positionClass="text-center"
                   spaceClass="mx-40"
-                  subtitleText="Here are some more goodies for you:"
+                  subtitleText={t("Here are some more goodies for you:")}
                 />
                 <Row className="p-5 justify-content-center">
                   <ShopProducts currentData={fallbackProducts} />
@@ -78,9 +73,9 @@ const Search = ({ products }) => {
           ) : (
             <div className="text-center">
               <p>
-                No products matched your search query <b>{searchParams}</b>.
+                {t("No products matched your search query")} <b>{searchParams}</b>.
               </p>
-              <p>Here are some recommendations:</p>
+              <p>{t("Here are some recommendations:")}</p>
               <ShopProducts currentData={fallbackProducts} />
             </div>
           )}

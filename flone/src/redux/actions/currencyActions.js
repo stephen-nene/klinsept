@@ -4,6 +4,7 @@ export const SET_CURRENCIES = "SET_CURRENCIES";
 export const SET_CURRENCY = "SET_CURRENCY";
 export const SET_TIMESTAMP = "SET_TIMESTAMP";
 
+const EXCHANGE_RATE_URL = process.env.REACT_APP_EXCHANGE_RATE_URL;
 // Define the list of currencies you want to track
 // const trackedCurrencies = ['USD', 'EUR', 'KES', 'UGX', 'TZS', 'RWF', 'BIF', 'ETB', 'SOS', 'SDG'];
 
@@ -34,12 +35,10 @@ export const fetchCurrencyRates = () => async (dispatch, getState) => {
     console.log("Rates are still valid. No need to fetch.");
     return;
   }
-
+  
   try {
-    const response = await axios.get(
-      "https://v6.exchangerate-api.com/v6/cd1e33b4aca62788eafd07db/latest/USD"
-    );
-
+    const response = await axios.get(EXCHANGE_RATE_URL );
+    
     const { conversion_rates, time_next_update_unix } = response.data;
 
     // Dispatch the rates and the next update timestamp
