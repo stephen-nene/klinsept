@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { getDiscountPrice } from "../../helpers/product";
 import {
   addToCart,
@@ -29,7 +29,8 @@ const Cart = ({
   const { addToast } = useToasts();
   const { pathname } = useLocation();
   let cartTotalPrice = 0;
-
+  const cart = useSelector((state) => state);
+console.log(cart)
   return (
     <div className="mt-90">
       <MetaTags>

@@ -3,8 +3,9 @@ import React from "react";
 import Swiper from "react-id-swiper";
 import SectionTitle from "../../components/SectionTitle";
 import ShopProducts from "./ShopProducts";
-
+import { useTranslation } from "react-i18next";
 const ProductSlider = ({  category }) => {
+  const { t } = useTranslation();
   const settings = {
     loop: false,
     slidesPerView: 4,

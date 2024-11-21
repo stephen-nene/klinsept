@@ -6,7 +6,7 @@ import { Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import Fuse from "fuse.js";
 import ShopProducts from "../wrappers/product/ShopProducts";
-// import "../assets/css/search.css";
+import "../assets/css/search.css";
 import { useTranslation } from "react-i18next";
 const Search = ({ products }) => {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ const Search = ({ products }) => {
     filteredProducts.length > 0 ? filteredProducts : fallbackProducts;
 
   return (
-    <div className="mt-100">
+    <div className="overflow-hidden mt-100">
       <LayoutOne headerTop="visible">
         <SectionTitle
           titleText={`${t("Search results for")} "${searchParams}"`}

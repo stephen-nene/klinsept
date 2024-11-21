@@ -27,7 +27,7 @@ function LanguageCurrencyChanger() {
   return (
     <div className="language-currency-changer">
       <div className="language-selector">
-        <label htmlFor="language-select">Language:</label>
+        {/* <label htmlFor="language-select">Language:</label> */}
         <select
           id="language-select"
           value={selectedLanguage}
@@ -41,7 +41,7 @@ function LanguageCurrencyChanger() {
       </div>
 
       <div className="currency-selector">
-        <label htmlFor="currency-select">Currency:</label>
+        {/* <label htmlFor="currency-select">Currency:</label> */}
         <select
           id="currency-select"
           value={selectedCurrency}
