@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, {  } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import MetaTags from "react-meta-tags";
@@ -7,7 +7,6 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import { deleteFromCompare } from "../../redux/actions/compareActions";
-import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import Rating from "../../components/product/sub-components/ProductRating";
@@ -18,10 +17,10 @@ const Compare = ({
   compareItems,
   addToCart,
   deleteFromCompare,
-  currency
+  currency,
 }) => {
   const { addToast } = useToasts();
-  const  pathname  = useLocation();
+  const pathname = useLocation();
 
   return (
     <div className="mt-90">
@@ -52,7 +51,7 @@ const Compare = ({
                             <th className="title-column">Product Info</th>
                             {compareItems.map((compareItem, key) => {
                               const cartItem = cartItems.filter(
-                                item => item.id === compareItem.id
+                                (item) => item.id === compareItem.id
                               )[0];
                               return (
                                 <td className="product-image-title" key={key}>
@@ -150,35 +149,19 @@ const Compare = ({
                           <tr>
                             <th className="title-column">Price</th>
                             {compareItems.map((compareItem, key) => {
-                              const discountedPrice = getDiscountPrice(
-                                compareItem.price,
-                                compareItem.discount
-                              );
-                              const finalProductPrice = (
-                                compareItem.price * currency.currencyRate
-                              ).toFixed(2);
-                              const finalDiscountedPrice = (
-                                discountedPrice * currency.currencyRate
-                              ).toFixed(2);
+                              const convertedPrice = currency.selectedCurrency
+                                ? (
+                                    compareItem.price *
+                                    currency.selectedCurrency.rates
+                                  ).toFixed(2)
+                                : compareItem.price;
+
                               return (
                                 <td className="product-price" key={key}>
-                                  {discountedPrice !== null ? (
-                                    <Fragment>
-                                      <span className="amount old">
-                                        {currency.currencySymbol +
-                                          finalProductPrice}
-                                      </span>
-                                      <span className="amount">
-                                        {currency.currencySymbol +
-                                          finalDiscountedPrice}
-                                      </span>
-                                    </Fragment>
-                                  ) : (
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                  )}
+                                  <span className="amount">
+                                    {currency.selectedCurrency.symbol + ' ' +
+                                      convertedPrice}
+                                  </span>
                                 </td>
                               );
                             })}
@@ -245,18 +228,18 @@ Compare.propTypes = {
   compareItems: PropTypes.array,
   currency: PropTypes.object,
   location: PropTypes.object,
-  deleteFromCompare: PropTypes.func
+  deleteFromCompare: PropTypes.func,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     cartItems: state.cartData,
     compareItems: state.compareData,
-    currency: state.currencyData
+    currency: state.currencyData,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (item, addToast, quantityCount) => {
       dispatch(addToCart(item, addToast, quantityCount));
@@ -264,7 +247,7 @@ const mapDispatchToProps = dispatch => {
 
     deleteFromCompare: (item, addToast) => {
       dispatch(deleteFromCompare(item, addToast));
-    }
+    },
   };
 };
 

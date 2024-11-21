@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { useLocation } from "react-router-dom";
@@ -42,14 +41,14 @@ const Checkout = ({ cartItems, currency }) => {
       event.preventDefault();
       event.stopPropagation();
     } else {
-        if (!userData) {
+      if (!userData) {
         setOrderDetails(formData); // Set the order details for logging
         console.log("Order Details:", formData, orderDetails);
       } else {
         setShow(!show);
       }
-      }
-      setValidated(true);
+    }
+    setValidated(true);
   };
 
   return (
@@ -80,82 +79,6 @@ const Checkout = ({ cartItems, currency }) => {
                       onSubmit={handleSubmit}
                     >
                       <div className="row">
-                        {/* <div className="col-lg-6 col-md-6">
-                          <Form.Group controlId="firstName">
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control
-                              type="text"
-                              required
-                              value={formData.firstName}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  firstName: e.target.value,
-                                })
-                              }
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              Please provide your first name.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                        <div className="col-lg-6 col-md-6">
-                          <Form.Group controlId="lastName">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control
-                              type="text"
-                              required
-                              value={formData.lastName}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  lastName: e.target.value,
-                                })
-                              }
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              Please provide your last name.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                        <div className="col-lg-6 col-md-6">
-                          <Form.Group controlId="phone">
-                            <Form.Label>Phone</Form.Label>
-                            <Form.Control
-                              type="text"
-                              required
-                              value={formData.phone}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  phone: e.target.value,
-                                })
-                              }
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              Please provide a valid phone number.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                        <div className="col-lg-6 col-md-6">
-                          <Form.Group controlId="email">
-                            <Form.Label>Email Address</Form.Label>
-                            <Form.Control
-                              type="email"
-                              required
-                              value={formData.email}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  email: e.target.value,
-                                })
-                              }
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              Please provide a valid email address.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div> */}
                         <div className="col-lg-12">
                           <Form.Group controlId="country">
                             <Form.Label>Country</Form.Label>
@@ -275,10 +198,7 @@ const Checkout = ({ cartItems, currency }) => {
 
                       <div className="place-order mt-25">
                         <Button type="submit" variant="primary">
-
-                        <Link to='/payment' >
-                          Proceed to payment
-                        </Link>
+                          <Link to="/payment">Proceed to payment</Link>
                         </Button>
                       </div>
                     </Form>
@@ -299,38 +219,26 @@ const Checkout = ({ cartItems, currency }) => {
                         <div className="your-order-middle">
                           <ul>
                             {cartItems.map((cartItem, key) => {
-                              const discountedPrice = getDiscountPrice(
-                                cartItem.price,
-                                cartItem.discount
-                              );
-                              const finalProductPrice = (
-                                cartItem.price * currency.currencyRate
-                              ).toFixed(2);
-                              const finalDiscountedPrice = (
-                                discountedPrice * currency.currencyRate
-                              ).toFixed(2);
+                              const convertedPrice = currency.selectedCurrency
+                                ? (
+                                    cartItem.price *
+                                    currency.selectedCurrency.rates
+                                  ).toFixed(2)
+                                : cartItem.price;
 
-                              discountedPrice != null
-                                ? (cartTotalPrice +=
-                                    finalDiscountedPrice * cartItem.quantity)
-                                : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.quantity);
+                              cartTotalPrice +=
+                                convertedPrice * cartItem.quantity;
+
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
                                     {cartItem.name} X {cartItem.quantity}
                                   </span>{" "}
                                   <span className="order-price">
-                                    {discountedPrice !== null
-                                      ? currency.currencySymbol +
-                                        (
-                                          finalDiscountedPrice *
-                                          cartItem.quantity
-                                        ).toFixed(2)
-                                      : currency.currencySymbol +
-                                        (
-                                          finalProductPrice * cartItem.quantity
-                                        ).toFixed(2)}
+                                    {currency.selectedCurrency.symbol +
+                                      (
+                                        convertedPrice * cartItem.quantity
+                                      ).toFixed(2)}
                                   </span>
                                 </li>
                               );

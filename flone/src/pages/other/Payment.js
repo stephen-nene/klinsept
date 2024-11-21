@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../components/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { Form, Button } from "react-bootstrap";
@@ -181,13 +180,13 @@ const Payment = ({ cartItems, currency }) => {
                         <div className="your-order-middle">
                           <ul>
                             {cartItems.map((cartItem, key) => {
-                              const discountedPrice = getDiscountPrice(
-                                cartItem.price,
-                                cartItem.discount
-                              );
-                              const finalPrice = discountedPrice
-                                ? discountedPrice
+                              const convertedPrice = currency.selectedCurrency
+                                ? (
+                                    cartItem.price *
+                                    currency.selectedCurrency.rates
+                                  ).toFixed(2)
                                 : cartItem.price;
+
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
@@ -195,9 +194,9 @@ const Payment = ({ cartItems, currency }) => {
                                   </span>
                                   <span className="order-price">
                                     {currency.currencySymbol +
-                                      (finalPrice * cartItem.quantity).toFixed(
-                                        2
-                                      )}
+                                      (
+                                        convertedPrice * cartItem.quantity
+                                      ).toFixed(2)}
                                   </span>
                                 </li>
                               );
@@ -213,10 +212,7 @@ const Payment = ({ cartItems, currency }) => {
                                   .reduce(
                                     (total, item) =>
                                       total +
-                                      (getDiscountPrice(
-                                        item.price,
-                                        item.discount
-                                      ) || item.price) *
+                                      ((currency.selectedCurrency.rates*item.price) ) *
                                         item.quantity,
                                     0
                                   )

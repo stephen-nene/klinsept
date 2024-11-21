@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import { connect, useSelector } from "react-redux";
-import { getDiscountPrice } from "../../helpers/product";
+import { connect } from "react-redux";
 import {
   addToCart,
   decreaseQuantity,
@@ -29,8 +28,7 @@ const Cart = ({
   const { addToast } = useToasts();
   const { pathname } = useLocation();
   let cartTotalPrice = 0;
-  const cart = useSelector((state) => state);
-console.log(cart)
+
   return (
     <div className="mt-90">
       <MetaTags>
@@ -70,22 +68,15 @@ console.log(cart)
                         </thead>
                         <tbody>
                           {cartItems.map((cartItem, key) => {
-                            const discountedPrice = getDiscountPrice(
-                              cartItem.price,
-                              cartItem.discount
-                            );
-                            const finalProductPrice = (
-                              cartItem.price * currency.currencyRate
-                            ).toFixed(2);
-                            const finalDiscountedPrice = (
-                              discountedPrice * currency.currencyRate
-                            ).toFixed(2);
+                            const convertedPrice = currency.selectedCurrency
+                              ? (
+                                  cartItem.price *
+                                  currency.selectedCurrency.rates
+                                ).toFixed(2)
+                              : cartItem.price;
 
-                            discountedPrice != null
-                              ? (cartTotalPrice +=
-                                  finalDiscountedPrice * cartItem.quantity)
-                              : (cartTotalPrice +=
-                                  finalProductPrice * cartItem.quantity);
+                            cartTotalPrice +=
+                              convertedPrice * cartItem.quantity;
                             return (
                               <tr key={key}>
                                 <td className="product-thumbnail">
@@ -120,23 +111,11 @@ console.log(cart)
                                 </td>
 
                                 <td className="product-price-cart">
-                                  {discountedPrice !== null ? (
-                                    <Fragment>
-                                      <span className="amount old">
-                                        {currency.currencySymbol +
-                                          finalProductPrice}
-                                      </span>
-                                      <span className="amount">
-                                        {currency.currencySymbol +
-                                          finalDiscountedPrice}
-                                      </span>
-                                    </Fragment>
-                                  ) : (
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                  )}
+                                  <span className="amount">
+                                    {currency.selectedCurrency.symbol +
+                                      " " +
+                                      convertedPrice}
+                                  </span>
                                 </td>
 
                                 <td className="product-quantity">
@@ -180,15 +159,10 @@ console.log(cart)
                                   </div>
                                 </td>
                                 <td className="product-subtotal">
-                                  {discountedPrice !== null
-                                    ? currency.currencySymbol +
-                                      (
-                                        finalDiscountedPrice * cartItem.quantity
-                                      ).toFixed(2)
-                                    : currency.currencySymbol +
-                                      (
-                                        finalProductPrice * cartItem.quantity
-                                      ).toFixed(2)}
+                                  {currency.selectedCurrency.symbol +
+                                    (
+                                      convertedPrice * cartItem.quantity
+                                    ).toFixed(2)}
                                 </td>
 
                                 <td className="product-remove">

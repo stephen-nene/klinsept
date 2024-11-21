@@ -32,7 +32,7 @@ const ProductSlider = ({  category }) => {
     >
       <div className="container">
         <SectionTitle
-          titleText="Top Products"
+          titleText={t("Top Products")}
           subtitleText="Discover our most popular items"
           subtitleColorClass="text-dark" 
           positionClass="text-center"
