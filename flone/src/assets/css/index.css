@@ -39,7 +39,6 @@
 
 .contact-icons {
   display: flex;           
-  justify-content: start;  
   gap: 15px;               
   padding-left: 10px;     
 }

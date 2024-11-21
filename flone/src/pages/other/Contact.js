@@ -56,16 +56,14 @@ const Contact = () => {
                 <Card className="mb-3">
                   <Card.Body>
                     <Card.Title>Email</Card.Title>
-                    <Card.Text>
+                    <p>
                       <Link target="_blank" to="mailto:info@klinsept.com">
                         info@klinsept.com
                       </Link>
-                    </Card.Text>
-                    <Card.Text>
-                      <Link target="_blank" to="//klinsept.com">
-                        klinsept.com
-                      </Link>
-                    </Card.Text>
+                    </p>
+                    <Link target="_blank" to="//klinsept.com">
+                      klinsept.com
+                    </Link>
                   </Card.Body>
                 </Card>
                 <Card className="mb-3">
@@ -79,9 +77,7 @@ const Contact = () => {
                 </Card>
                 <Card className="mb-4 shadow-sm">
                   <Card.Body className="text-left p-4">
-                    <Card.Title className="h5 mb-4 ">
-                      Follow Us
-                    </Card.Title>
+                    <Card.Title className="h5 mb-4 ">Follow Us</Card.Title>
                     <div className="contact-icons">
                       <Link to="https://www.facebook.com/" target="_blank">
                         <FaFacebook size={35} />

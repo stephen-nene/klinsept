@@ -1,4 +1,8 @@
-import { SET_CURRENCY, SET_CURRENCIES,SET_TIMESTAMP } from "../actions/currencyActions";
+import {
+  SET_CURRENCY,
+  SET_CURRENCIES,
+  SET_TIMESTAMP,
+} from "../actions/currencyActions";
 
 const initState = {
   currencies: {
@@ -62,6 +66,12 @@ const initState = {
       rates: 450.0,
       country: "Sudan",
     },
+  },
+  selectedCurrency: {
+    name: "USD",
+    symbol: "$",
+    rates: 1,
+    country: "United States",
   },
   timestamp: null,
 };

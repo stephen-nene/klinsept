@@ -25,7 +25,7 @@ const Wishlist = ({
 }) => {
   const { addToast } = useToasts();
   const { pathname } = useLocation();
-
+console.log(wishlistItems)
   return (
     <div className="mt-90">
       <MetaTags>
@@ -111,7 +111,7 @@ const Wishlist = ({
                                 <td className="product-price-cart">
                                
                                     <span className="amount">
-                                      {currency.selectedCurrency.currency + ' ' +
+                                      {currency.selectedCurrency.symbol + ' ' +
                                         convertedPrice}
                                     </span>
                                 </td>
@@ -170,7 +170,7 @@ const Wishlist = ({
                                 <td className="product-remove">
                                   <button
                                     onClick={() =>
-                                      deleteFromWishlist(wishlistItem, addToast)
+                                      deleteFromWishlist(wishlistItem)
                                     }
                                   >
                                     <i className="fa fa-times"></i>
