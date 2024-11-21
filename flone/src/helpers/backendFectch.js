@@ -41,9 +41,9 @@ export const LoginFetch = async (loginData, dispatch, toast) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      toast(error.response.data.detail || "An error occurred. Please try again.");
+      toast.error(error.response.data.detail || "An error occurred. Please try again.");
     } else {
-      toast("Network error. Please check your connection.");
+      toast.error("Network error. Please check your connection.");
     }
   }
 };
